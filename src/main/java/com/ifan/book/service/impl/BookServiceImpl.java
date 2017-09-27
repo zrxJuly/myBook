@@ -100,4 +100,14 @@ public class BookServiceImpl implements BookService {
     public void reserveBookCancel(int book_id, int user_id) {
         bookDao.reserveBookCancel(book_id,user_id);
     }
+
+    @Override
+    public List<Book> getUnVerifyBook(int status) {
+        return bookDao.getUnVerifyBook(status);
+    }
+
+    @Override
+    public void VerifyBook(int id) {
+        bookDao.verifyBookTrue(id);
+    }
 }

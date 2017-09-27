@@ -73,4 +73,16 @@ public interface BookService {
      * @param user_id 用户id
      */
     void reserveBookCancel(int book_id,int user_id);
+
+    /**
+     * 根据状态查询图书
+     * @return
+     */
+    List<Book> getUnVerifyBook(int status);
+
+    /**
+     * 确认图书信息
+     * @param id 图书的id
+     */
+    void VerifyBook(int id);
 }

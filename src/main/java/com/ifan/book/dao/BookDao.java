@@ -38,4 +38,10 @@ public interface BookDao {
 
     //用户取消预约图书
     void reserveBookCancel(@Param("book_id") int book_id,@Param("user_id") int user_id);
+
+    //根据状态查询图书
+    List<Book> getUnVerifyBook(@Param("status") int status);
+
+    //确认图书正确
+    void verifyBookTrue(int id);
 }
