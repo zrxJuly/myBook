@@ -302,7 +302,8 @@
                             </div>
                             <div class="form-group text-center">
                                 <input type="submit" class="btn btn-default" value="登录"/>
-                                <input type="button" class="btn btn-info" value="注册"/>
+                                <input type="button" class="btn btn-info" value="注册"
+                                       onclick="location.href='/book/view/register.action'" />
                             </div>
                         </form>
                     </div>
