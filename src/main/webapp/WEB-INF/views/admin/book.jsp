@@ -88,8 +88,8 @@
                                                 <td>${unverifyBook.name }</td>
                                                 <td>${unverifyBook.author }</td>
                                                 <td>${unverifyBook.intro }</td>
-                                                <td><button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;margin-bottom: 3px;">通过</button>
-                                                    <button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;">拒绝</button>
+                                                <td><button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;margin-bottom: 3px;" onclick="location.href='/book/admin/verifyBookTrue.action?id=${unverifyBook.id}&amp;status=true' ">通过</button>
+                                                    <button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;" onclick="location.href='/book/admin/verifyBookTrue.action?id=${unverifyBook.id}&amp;status=false' ">拒绝</button>
                                                 </td>
                                             </tr>
                                         </c:forEach>
