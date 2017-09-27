@@ -44,7 +44,7 @@ public class UserController {
         model.addAttribute("userInfo", userService.getUserBaseInfo(ID));//查询用户的基本信息
         model.addAttribute("bookBorrow", bookService.getBorrowBookByUser(ID));//得到用户的借阅信息
         model.addAttribute("bookMy", bookService.getMyBook(ID));//得到用户的图书
-        //model.addAttribute("bookCollect",bookService.getCollectBookByUser(ID));//得到用户收藏的图书
+        model.addAttribute("bookCollect",bookService.getCollectBookByUser(ID));//得到用户收藏的图书
         model.addAttribute("bookReserve",bookService.getReserveBookByUser(ID));//得到用户预约的图书
         return "meInfo";
     }
@@ -78,6 +78,14 @@ public class UserController {
         }
         return "redirect: meInfo.action";
     }
+    @ResponseBody
+    @RequestMapping(value = "/ajaxGetUserByCondition.action", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public Map<String ,String> ajaxGetUserByCondition(String condition){
+        //根据账号和昵称查询用户
+
+        return userService.getUserByCondition(condition);
+    }
+
 
 
 }

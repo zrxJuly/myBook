@@ -21,13 +21,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Map<String, Integer> login(String account, String password) {
-        Map<String, Integer> user = userDao.login(account, password);
-        if (null == user.get("id")) {
-            user.put("id", -1);//没有找到账号
-            return user;
-        } else {
-            return user;
-        }
+
+            return userDao.login(account,password);
+
     }
 
     @Override
@@ -134,5 +130,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int getSizeAllUser() {
         return userDao.getSizeAllUser();
+    }
+
+    @Override
+    public Map<String, String> getUserByCondition(String condition) {
+        return userDao.getUserByCondition(condition);
     }
 }

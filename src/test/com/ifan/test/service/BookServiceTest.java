@@ -1,6 +1,7 @@
 package com.ifan.test.service;
 
 import com.ifan.book.model.Book;
+import com.ifan.book.model.Collect;
 import com.ifan.book.service.BookService;
 import com.ifan.book.utils.Invariable;
 import org.apache.log4j.Logger;
@@ -71,6 +72,12 @@ public class BookServiceTest {
     public void getSizeVerifyBook() {
         int i = bookService.getSizeVerifyBook(true);
         System.out.println(i);
+    }
+
+    @Test
+    public void getCollectBookByUser(){
+        List<Collect> collect = bookService.getCollectBookByUser(1);
+        System.out.println(collect);
     }
 
 }

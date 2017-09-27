@@ -92,4 +92,11 @@ public interface UserService {
      * @return
      */
     int getSizeAllUser();
+
+    /**
+     * 根据 条件(账号 或 姓名)
+     * @param condition
+     * @return
+     */
+    Map<String,String> getUserByCondition(String condition);
 }

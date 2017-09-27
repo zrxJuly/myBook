@@ -61,8 +61,8 @@
     <select id="getCollectBookByUser" resultMap="collect">
         SELECT b.id,b.name,b.image,b.intro,c.collectDate
         FROM book b, collect c
-        WHERE collect.user_id=#{id}
-        AND collect.book_id=b.id
+        WHERE c.user_id=#{id}
+        AND c.book_id=b.id
     </select>
     <select id="getReserveBookByUser" resultMap="reserve">
         SELECT b.id,b.name,b.intro,b.image,r.reserveDate
