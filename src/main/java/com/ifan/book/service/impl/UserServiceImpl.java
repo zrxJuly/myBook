@@ -130,4 +130,9 @@ public class UserServiceImpl implements UserService {
 
 
     }
+
+    @Override
+    public int getSizeAllUser() {
+        return userDao.getSizeAllUser();
+    }
 }

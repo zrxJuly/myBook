@@ -30,18 +30,22 @@ public interface BookDao {
 
     //得到用户预约的图书
     List<Reserve> getReserveBookByUser(@Param("id") int id);
+
     //根据图书的id和预约时间得到在 该预约时间之前还有多少预约的人
-    Integer getSizeReserveBeforeThis(@Param("book_id") int id,@Param("reserveDate") Date reserveDate);
+    Integer getSizeReserveBeforeThis(@Param("book_id") int id, @Param("reserveDate") Date reserveDate);
 
     //用户预约图书
-    void reserveBook(@Param("book_id") int book_id,@Param("user_id") int user_id);
+    void reserveBook(@Param("book_id") int book_id, @Param("user_id") int user_id);
 
     //用户取消预约图书
-    void reserveBookCancel(@Param("book_id") int book_id,@Param("user_id") int user_id);
+    void reserveBookCancel(@Param("book_id") int book_id, @Param("user_id") int user_id);
 
     //根据状态查询图书
     List<Book> getUnVerifyBook(@Param("status") int status);
 
     //确认图书正确
-    void verifyBookTrue(int id);
+    void verifyBook(@Param("id") int id, @Param("status") int status);
+
+    //查询确认的图书的数量
+    int getSizeVerifyBook(@Param("status") int[] status);
 }

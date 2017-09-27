@@ -86,4 +86,10 @@ public interface UserService {
      * @return true:存在 false:不存在
      */
     boolean checkAccount(String account);
+
+    /**
+     * 查询用户的数量
+     * @return
+     */
+    int getSizeAllUser();
 }

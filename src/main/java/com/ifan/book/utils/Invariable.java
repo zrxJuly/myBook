@@ -6,15 +6,16 @@ import org.jetbrains.annotations.NotNull;
 public class Invariable {
     /**
      * @author ifan
-     * @version 0.0.1
-     * @Date 2017年9月25日14:30:38
+     * @version 0.0.2
+     * @Date 2017年9月27日15:43:38
      * @explain 图书的状态
      */
-    public static final int BOOK_STATE_NOT_AFFIRM = 0;//未确认状态
-
-    public static final int BOOK_STATE_FLOW = 1;//流动状态
-    public static final int BOOK_STATE_ONE_TO_ONE = 2;//一对一借阅状态
-    public static final int BOOK_STATE_SELL = 3;//售出状态
+    public static final int BOOK_STATUS_AFFIRM_NOT = 0;//未确认状态
+    public static final int BOOK_STATUS_AFFIRM_TRUE = 1;//确认成功
+    public static final int BOOK_STATUS_AFFIRM_FALSE = 2;//确认失败
+    public static final int BOOK_STATUS_FLOW = 2;//流动状态
+    public static final int BOOK_STATUS_ONE_TO_ONE = 3;//一对一借阅状态
+    public static final int BOOK_STATUS_SELL = 4;//售出状态
 
     /**
      * @author ifan
@@ -81,9 +82,10 @@ public class Invariable {
 
     /**
      * 根据提供的经度和纬度、以及半径，取得此半径内的最大最小经纬度
-     * @param latitude 确定的经度
+     *
+     * @param latitude  确定的经度
      * @param longitude 确定的纬度
-     * @param radius 半径(米)
+     * @param radius    半径(米)
      * @return
      */
     @NotNull

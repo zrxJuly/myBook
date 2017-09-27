@@ -108,5 +108,10 @@
         WHERE account=#{account}
     </select>
 
+    <select id="getSizeAllUser" resultType="java.lang.Integer">
+        SELECT COUNT(id)
+        FROM user
+    </select>
+
 
 </mapper>
