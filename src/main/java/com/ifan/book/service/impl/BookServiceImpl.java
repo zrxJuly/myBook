@@ -107,7 +107,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void VerifyBook(int id) {
+    public void verifyBookTrue(int id) {
         bookDao.verifyBookTrue(id);
     }
 }

@@ -40,10 +40,18 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/adminBook.action")
-    public String book(ModelMap map ){
+    public String waitingProcess(ModelMap map ){
         // 查询未确认的图书
         map.addAttribute("unVerifyBooks",bookService.getUnVerifyBook(Invariable.BOOK_STATE_NOT_AFFIRM));
+        // 查询
         return "admin/book";
+    }
+
+    @RequestMapping(value = "/verifyBook.action")
+    public String verifyBook(int id){
+        //图书确认功能
+        bookService.verifyBookTrue(id);
+        return "";
     }
 
 }

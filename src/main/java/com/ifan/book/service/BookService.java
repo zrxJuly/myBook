@@ -84,5 +84,5 @@ public interface BookService {
      * 确认图书信息
      * @param id 图书的id
      */
-    void VerifyBook(int id);
+    void verifyBookTrue(int id);
 }

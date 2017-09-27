@@ -91,6 +91,11 @@
       SELECT * FROM book
       WHERE status=#{status}
     </select>
+    <update id="verifyBookTrue" parameterType="java.lang.Integer">
+        UPDATE book
+        SET status=#{status}
+        WHERE id=#{id}
+    </update>
 
 
 </mapper>
