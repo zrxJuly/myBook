@@ -21,9 +21,8 @@ public class BookServiceTest {
     private BookService bookService;
 
     @Test
-    public void test(){
+    public void test() {
     }
-
 
 
     @Test
@@ -39,31 +38,39 @@ public class BookServiceTest {
     }
 
     @Test
-    public void getAllHotBook(){
-        List<Book> books = bookService.getAllHotBook(36.6340742,117.2650035);
-        for (Book book : books){
+    public void getAllHotBook() {
+        List<Book> books = bookService.getAllHotBook(36.6340742, 117.2650035);
+        for (Book book : books) {
             System.out.println(book.getDistance());
         }
     }
 
     @Test
-    public void getMyBook(){
+    public void getMyBook() {
         List<Book> books = bookService.getMyBook(1);
         System.out.println(books.size());
     }
+
     @Test
-    public void userReserveBook(){
-        bookService.reserveBook(1,1);
-    }
-    @Test
-    public void reserveBookCancel(){
-        bookService.reserveBookCancel(1,1);
+    public void userReserveBook() {
+        bookService.reserveBook(1, 1);
     }
 
     @Test
-    public void getUnVerifyBook(){
-        List<Book> un = bookService.getUnVerifyBook(Invariable.BOOK_STATE_NOT_AFFIRM);
+    public void reserveBookCancel() {
+        bookService.reserveBookCancel(1, 1);
+    }
+
+    @Test
+    public void getUnVerifyBook() {
+        List<Book> un = bookService.getUnVerifyBook(Invariable.BOOK_STATUS_AFFIRM_NOT);
         System.out.println(un);
+    }
+
+    @Test
+    public void getSizeVerifyBook() {
+        int i = bookService.getSizeVerifyBook(true);
+        System.out.println(i);
     }
 
 }

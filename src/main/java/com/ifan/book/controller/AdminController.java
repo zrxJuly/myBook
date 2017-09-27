@@ -52,15 +52,15 @@ public class AdminController {
         return "admin/book";
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/verifyBookTrue.action", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public void verifyBook(int id, boolean status) {
+    @RequestMapping(value = "/verifyBookTrue.action", method = RequestMethod.GET)
+    public String verifyBook(int id, boolean status) {
         //图书确认功能
         if (status) {//图书确认成功
             bookService.verifyBook(id, Invariable.BOOK_STATUS_AFFIRM_TRUE);
         } else {//图书确认失败
             bookService.verifyBook(id, Invariable.BOOK_STATUS_AFFIRM_FALSE);
         }
+        return "redirect: waitingProcess.action";
     }
 
 
