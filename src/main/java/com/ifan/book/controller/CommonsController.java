@@ -88,7 +88,7 @@ public class CommonsController {
         } else {
             status = user.get("status");
             if (status == Invariable.USER_STATE_ADMIN) {//管理员
-                return "redirect: user/admin.action";
+                return "redirect: admin/index.action";
             }
             // 将用户的id放入session中
             request.getSession().setAttribute(Invariable.SESSION_KEY, ID);

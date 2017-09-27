@@ -44,14 +44,14 @@
 
             <ul class="nav">
                 <li>
-                    <a href="/book/view/adminchart.action">
+                    <a href="/book/admin/index.action">
                         <i class="ti-bar-chart-alt"></i>
                         <p>网站数据</p>
                     </a>
                 </li>
 
                 <li class="active">
-                    <a href="/book/view/admintable.action">
+                    <a href="/book/admin/adminBook.action">
                         <i class="ti-view-list-alt"></i>
                         <p>图书管理</p>
                     </a>

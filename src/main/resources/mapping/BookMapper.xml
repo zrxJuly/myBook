@@ -87,6 +87,10 @@
       WHERE book_id=#{book_id}
       AND user_id=#{user_id}
     </delete>
+    <select id="getUnVerifyBook" resultMap="book">
+      SELECT * FROM book
+      WHERE status=#{status}
+    </select>
 
 
 </mapper>

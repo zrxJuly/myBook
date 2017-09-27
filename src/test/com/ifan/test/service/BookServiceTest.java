@@ -2,6 +2,7 @@ package com.ifan.test.service;
 
 import com.ifan.book.model.Book;
 import com.ifan.book.service.BookService;
+import com.ifan.book.utils.Invariable;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,6 +58,12 @@ public class BookServiceTest {
     @Test
     public void reserveBookCancel(){
         bookService.reserveBookCancel(1,1);
+    }
+
+    @Test
+    public void getUnVerifyBook(){
+        List<Book> un = bookService.getUnVerifyBook(Invariable.BOOK_STATE_NOT_AFFIRM);
+        System.out.println(un);
     }
 
 }
