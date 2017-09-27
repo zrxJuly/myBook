@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ifan.book.dao.BookDao">
+
+    <resultMap id="book" type="com.ifan.book.model.Book">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="account" property="account" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="author" property="author" jdbcType="VARCHAR"/>
+        <result column="press" property="press" jdbcType="VARCHAR"/>
+        <result column="translator" property="translator" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="FLOAT"/>
+        <result column="owner" property="owner" jdbcType="INTEGER"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <result column="createDate" property="createDate" jdbcType="DATE"/>
+        <result column="intro" property="intro" jdbcType="VARCHAR"/>
+        <result column="latitude" property="latitude" jdbcType="DOUBLE"/>
+        <result column="longitude" property="longitude" jdbcType="DOUBLE"/>
+        <result column="integral" property="integral" jdbcType="FLOAT"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="borrow" type="com.ifan.book.model.Borrow" extends="book">
+        <result column="borrowDate" property="borrowDate" jdbcType="DATE"/>
+        <result column="returnDate" property="returnDate" jdbcType="DATE"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="comment" property="comment" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="collect" type="com.ifan.book.model.Collect" extends="book">
+        <result column="collectDate" property="collectDate" jdbcType="DATE"/>
+    </resultMap>
+    <resultMap id="reserve" type="com.ifan.book.model.Reserve" extends="book">
+        <result column="reserveDate" property="reserveDate" jdbcType="DATE"/>
+    </resultMap>
+
+    <insert id="addBook" parameterType="com.ifan.book.model.Book" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO book
+        (account, name, author, press, translator, price, owner, image, createDate, intro, integral, status,latitude,longitude) VALUES
+        (#{account},#{name},#{author},#{press},#{translator},#{price},#{owner},#{image},#{createDate},#{intro},#{integral},#{status},#{latitude},#{longitude})
+    </insert>
+
+    <select id="getAllHotBook" resultMap="book">
+        SELECT * FROM book
+        WHERE status!=0
+        AND ( longitude-#{scope} &lt;#{longitude} OR longitude+#{scope} &gt;#{longitude} ) AND
+        (latitude-#{scope} &lt; #{latitude} OR latitude+#{scope} &gt;#{latitude})
+    </select>
+
+    <select id="getBorrowBookByUser" resultMap="book">
+        SELECT b.id,b.name,b.image,b.intro,bor.borrowDate,bor.returnDate
+        FROM book b,borrow bor
+        WHERE b.id=bor.book_id
+        AND bor.user_id=#{id}
+    </select>
+    <select id="getMyBook" resultMap="book">
+        SELECT id,name,image,intro,createDate
+        FROM book
+        WHERE owner=#{owner}
+    </select>
+    <select id="getCollectBookByUser" resultMap="collect">
+        SELECT b.id,b.name,b.image,b.intro,c.collectDate
+        FROM book b, collect c
+        WHERE collect.user_id=#{id}
+        AND collect.book_id=b.id
+    </select>
+    <select id="getReserveBookByUser" resultMap="reserve">
+        SELECT b.id,b.name,b.intro,b.image,r.reserveDate
+        FROM book b,reserve r
+        WHERE r.user_id=#{id}
+        AND r.book_id=b.id
+    </select>
+
+    <select id="getSizeReserveBeforeThis" resultType="java.lang.Integer">
+        SELECT count(book_id)
+        FROM reserve
+        WHERE reserveDate &lt; #{reserveDate}
+        AND book_id=#{book_id}
+    </select>
+    <insert id="reserveBook" parameterType="java.lang.Integer">
+        INSERT INTO reserve
+        (book_id, user_id, reserveDate)VALUES
+        (#{book_id},#{user_id},now())
+    </insert>
+    <delete id="reserveBookCancel" parameterType="java.lang.Integer">
+      DELETE FROM reserve
+      WHERE book_id=#{book_id}
+      AND user_id=#{user_id}
+    </delete>
+
+
+</mapper>
