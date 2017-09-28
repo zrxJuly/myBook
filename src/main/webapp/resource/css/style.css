@@ -1724,3 +1724,28 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 5px 5px 5px #666666;
   outline: none;
 }
+.mebtn{
+  border:0;
+  border-radius: 4px;
+  padding:3px 10px;
+  margin-right: 3px;
+  background: #3EC483;
+  color:#ffffff;
+  font-size: 15px;
+  outline: none;
+}
+.prompting{
+  width:70%;
+  margin-left:15%;
+  border:1px solid #ff6699;
+  background: #ffcccc;
+  padding:3px;
+  font-size:15px;
+}
+.mymodal2input{
+  height: 50px !important;
+}
+.modal-scroll{
+  overflow-y:auto;
+  height:300px !important;
+}
