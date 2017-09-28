@@ -1692,3 +1692,35 @@ h1, h2, h3, h4, h5, h6 {
 .fh7co{
   padding-top: 0em !important;
 }
+.bookbtn{
+  border:0;
+  border-radius: 4px;
+  padding:3px 10px;
+  background: #3EC483;
+  color:#FFFFFF;
+
+}
+/*申请介入模态框的css*/
+.input{
+  width:60%;
+  height:30px;
+  margin-left:20%;
+  border:1px solid #000000;
+  border-radius:4px;
+  margin-top:10px;
+  padding:0 !important;
+  padding-left:10px !important;
+}
+.textarea{
+  height:100px;
+}
+.applybtn{
+  border:0;
+  border-radius: 4px;
+  background: #3EC483;
+  padding:2px 20px;
+  color:#FFFFFF;
+  cursor:pointer;
+  box-shadow: 5px 5px 5px #666666;
+  outline: none;
+}
