@@ -45,7 +45,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="/book/resource/css/style.css">
     <link rel="stylesheet" href="/book/resource/css/chat.css">
-
+    <link href="/book/resource/css/admin/paper-dashboard.css" rel="stylesheet" />
     <!-- Modernizr JS -->
     <script src="/book/resource/js/modernizr-2.6.2.min.js"></script>
     <!-- FOR IE9 below -->
@@ -296,7 +296,7 @@
                         <div class="row clearfix">
                     </c:if>
                     <div class="col-md-4">
-                        <div class="fh5co-portfolio animate-box">
+                        <div class="fh5co-portfolio animate-box" style="margin-bottom: 5px;">
                             <a href="/getBookInfo.action?bookId=${book.id}">
                                 <div class="portfolio-entry" style="background-image: url(${book.image});">
                                 </div>
@@ -307,15 +307,20 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="row text-center center-block" style="margin-bottom: 20px">
-                            <button class="col-sub-4 col-sub-5" data-nav-section="manage">
+                        <div class="row text-center center-block" style="margin-bottom: 20px;margin-top: 3px;">
+                            <button class="mebtn" data-nav-section="manage">
                                 修改
                             </button>
-                            <button class="col-sub-4" onclick="deleteBook('${book.id}')">删除
+                            <button class="mebtn" onclick="deleteBook('${book.id}')">删除
                             </button>
-                            <button class="col-sub-8 ">更换拥有人</button>
-                            <button class="col-sub-8" data-toggle="modal" data-target="#myModal1">
+                            <button class="mebtn" data-toggle="modal" data-target="#myModal2">
+                                更换借阅人
+                            </button>
+                            <button class="mebtn" data-toggle="modal" data-target="#myModal1">
                                 申请介入
+                            </button>
+                            <button class="mebtn" data-toggle="modal" data-target="#myModal3">
+                                书途
                             </button>
                         </div>
                     </div>
@@ -472,11 +477,15 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form action="#" id="formid" method="post">
-                    <input type="text" class="input" name="username" placeholder="请在这里递补用户名" required>
-                    <input type="email"  class="input" name="bookname" placeholder="请在这里递补书名" required>
-                    <textarea name="yuanyin" class="input textarea" placeholder="请在此说明原因" required></textarea>
+                <div class="prompting">
+                   <ul>
+                       <li>尊敬的书途用户，在提交描述时请详细描述图书的状况、原因、图书的使用者。</li>
+                       <li>我们的工作人员，会最快的帮您处理。</li>
+                   </ul>
 
+                </div>
+                <form action="#" id="formid" method="post">
+                    <textarea name="yuanyin" class="input textarea" placeholder="请在此说明原因" required></textarea>
                 </form>
             </div>
             <div class="modal-footer">
@@ -485,6 +494,117 @@
                 <button type="button" class="applybtn" onclick="applebtn()">
                     提交
                 </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- 更换预约人模态框（Modal） -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">
+                    更换当前借阅人
+                </h4>
+            </div>
+            <div class="modal-body modal-scroll">
+
+                <form action="#" id="formid2" method="post">
+                    <input type="text" class="input mymodal2input" placeholder="请输入借阅人账号或者昵称" />
+                </form>
+                <div>
+
+                    <table class="table table-striped">
+                        <thead>
+                        <th>ID</th>
+                        <th>账号</th>
+                        <th>昵称</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>1070</td>
+                            <td>大傻伟</td>
+
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>22</td>
+                            <td>范大傻</td>
+
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>555</td>
+                            <td>智障柱</td>
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="applybtn" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="applybtn" onclick="applebtn()">
+                    提交
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- 申请介入模态框（Modal） -->
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel3">
+                    您的图书的流转状况
+                </h4>
+            </div>
+            <div class="modal-body modal-scroll">
+                <table class="table table-striped">
+                    <thead>
+                    <th>ID</th>
+                    <th>借阅人</th>
+                    <th>时间</th>
+                    <th>图书状况</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>大傻伟</td>
+                        <td><span>2017-06-20</span>至<span>2017-07-20</span></td>
+                        <td>图书已收到，很好，没有损坏</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>范大傻</td>
+                        <td><span>2017-06-20</span>至<span>2017-07-20</span></td>
+                        <td>上位借阅人给我时，书籍损坏严重。</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>无情的大D萝莉范大傻</td>
+                        <td><span>2017-06-20</span>至<span>2017-07-20</span></td>
+                        <td>上位借阅人给我时，书籍损坏严重。</td>
+
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="applybtn" data-dismiss="modal">关闭
+                </button>
+
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
