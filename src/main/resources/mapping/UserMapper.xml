@@ -50,7 +50,7 @@
         SET passowrd=#{password}
         WHERE id=#{id}
     </update>
-    <update id="addUserIntegral">
+    <update id="updateUserIntegral">
         UPDATE user
         SET integral=integral+#{integral}
         WHERE id=#{id}
@@ -112,6 +112,60 @@
         SELECT COUNT(id)
         FROM user
     </select>
+    <select id="getUserByCondition" resultType="java.util.HashMap">
+        SELECT id,name
+        FROM user
+        WHERE account LIKE ${condition}
+        OR name LIKE ${condition}
+    </select>
+    <update id="reserveAffirm">
+        UPDATE borrow
+        SET comment=#{comment},
+        giveMark=#{giveMark}
+        WHERE book_id=#{book_id}
+        AND user_id=#{borrow_id}
+    </update>
+    <update id="affirmGiveMe" parameterType="java.lang.Integer">
+        UPDATE reserve
+        SET give_me=TRUE
+        WHERE user_id=#{reserve_id}
+        AND book_id=#{book_id}
+    </update>
+    <update id="borrowAffirm" parameterType="java.lang.Integer">
+        UPDATE borrow
+        SET status=#{status}
+        WHERE book_id=#{book_id}
+        AND user_id=#{borrow_id}
+    </update>
+    <select id="getFirstReserve" resultType="java.lang.Integer">
+        SELECT user_id
+        FROM reserve
+        WHERE book_id=#{book_id}
+        ORDER BY reserveDate DESC
+        limit 1
+    </select>
+    <insert id="addBorrow" parameterType="java.lang.Integer">
+        INSERT INTO borrow
+        (book_id, user_id, borrowDate, returnDate, status) VALUES
+        (#{book_id},#{reserve_id},now(),date_add(NOW(), interval 1 MONTH),#{status})
+    </insert>
+    <delete id="deleteReserve">
+        DELETE FROM reserve
+        WHERE book_id=#{book_id}
+        AND user_id=#{user_id}
+    </delete>
+
+    <select id="getReserveGiveMe" resultType="java.lang.Boolean">
+      SELECT give_me
+      FROM reserve
+      WHERE book_id=#{book_id}
+      AND user_id=#{reserve_id}
+    </select>
+    <insert id="reserveBook" parameterType="java.lang.Integer">
+        INSERT INTO reserve
+        (book_id, user_id, reserveDate, give_me) VALUES
+        (#{book_id},#{reserve_id},now(),FALSE )
+    </insert>
 
 
 </mapper>

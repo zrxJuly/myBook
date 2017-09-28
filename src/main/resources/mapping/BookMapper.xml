@@ -25,6 +25,7 @@
         <result column="returnDate" property="returnDate" jdbcType="DATE"/>
         <result column="status" property="status" jdbcType="INTEGER"/>
         <result column="comment" property="comment" jdbcType="VARCHAR"/>
+        <result column="giveMark" property="giveMark" jdbcType="FLOAT"/>
     </resultMap>
 
     <resultMap id="collect" type="com.ifan.book.model.Collect" extends="book">
@@ -106,5 +107,36 @@
         </foreach>
     </select>
 
+    <select id="getBookStatus" resultType="java.lang.Integer">
+        SELECT status
+        FROM book
+        WHERE id=#{book_id}
+    </select>
+    <select id="getBookOwner" resultType="java.lang.Integer">
+        SELECT owner
+        FROM book
+        WHERE id=#{book_id}
+    </select>
+    <insert id="addBorrow">
+        INSERT INTO borrow
+        (book_id, user_id, status) VALUES
+        (#{book_id},#{owner_id},#{status})
+    </insert>
+    <select id="getCurrentBorrowId" resultType="java.lang.Integer">
+        SELECT user_id
+        FROM borrow
+        WHERE book_id=#{book_id}
+        AND status=1
+    </select>
+    <delete id="deleteMyBook" parameterType="java.lang.Integer">
+        DELETE FROM book
+        WHERE id=#{book_id}
+    </delete>
+
+    <update id="nextOwner" parameterType="java.lang.Integer">
+        UPDATE book
+        SET owner=#{nextOwner}
+        WHERE id=#{id}
+    </update>
 
 </mapper>

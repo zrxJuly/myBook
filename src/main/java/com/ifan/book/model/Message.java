@@ -6,27 +6,27 @@ import java.util.Date;
  * 聊天记录和信息
  */
 public class Message {
-    private String from;//消息的发送人
-    private String to;//消息的接收人
+    private int from_id;//消息的发送人
+    private int to_id;//消息的接收人
     private Date sendDate;//消息发送的时间
-    private String message;//消息的内容
-    private boolean state;//消息的状态
-    // true: 已读, false: 未读
+    private String message_content;//消息的内容
+    private int status;//消息的状态
+    // 1: 已读, 0: 未读
 
-    public String getFrom() {
-        return from;
+    public int getFrom_id() {
+        return from_id;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setFrom_id(int from_id) {
+        this.from_id = from_id;
     }
 
-    public String getTo() {
-        return to;
+    public int getTo_id() {
+        return to_id;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setTo_id(int to_id) {
+        this.to_id = to_id;
     }
 
     public Date getSendDate() {
@@ -37,30 +37,19 @@ public class Message {
         this.sendDate = sendDate;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMessage_content() {
+        return message_content;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessage_content(String message_content) {
+        this.message_content = message_content;
     }
 
-    public boolean isState() {
-        return state;
+    public int getStatus() {
+        return status;
     }
 
-    public void setState(boolean state) {
-        this.state = state;
-    }
-
-    @Override
-    public String toString() {
-        return "Message{" +
-                "from='" + from + '\'' +
-                ", to='" + to + '\'' +
-                ", sendDate=" + sendDate +
-                ", message='" + message + '\'' +
-                ", state=" + state +
-                '}';
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

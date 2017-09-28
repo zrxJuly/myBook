@@ -1,5 +1,6 @@
 package com.ifan.book.service.impl;
 
+import com.ifan.book.dao.MessageDao;
 import com.ifan.book.dao.UserDao;
 import com.ifan.book.model.User;
 import com.ifan.book.service.UserService;
@@ -22,7 +23,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Map<String, Integer> login(String account, String password) {
 
-            return userDao.login(account,password);
+        return userDao.login(account, password);
 
     }
 
@@ -59,8 +60,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUserIntegral(int id, float integral) {
-        userDao.addUserIntegral(id, integral);
+    public void updateUserIntegral(int id, float integral) {
+        userDao.updateUserIntegral(id, integral);
     }
 
     @Override
@@ -133,7 +134,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, String> getUserByCondition(String condition) {
+    public List<Map<String, String>> getUserByCondition(String condition) {
+        condition = "'%" + condition + "%'";
         return userDao.getUserByCondition(condition);
+    }
+
+    @Override
+    public void reserveAffirm(int book_id, int borrow_id, int reserve_id, String comment, float giveMark) {
+        userDao.affirmGiveMe(book_id, reserve_id);
+        userDao.reserveAffirm(book_id, borrow_id, comment, giveMark);
+    }
+
+    @Override
+    public void borrowAffirm(int book_id, int borrow_id) {
+        int reserve_id = userDao.getFirstReserve(book_id);
+        if (userDao.getReserveGiveMe(book_id,reserve_id)) {//查看 预约表中 give_me字段是否已经更改
+            // 将当前借阅的信息改为历史记录
+            userDao.borrowAffirm(book_id, borrow_id, Invariable.BORROW_HISTORY);
+            // 添加将当前预约人添加进借阅表
+            userDao.addBorrow(book_id, reserve_id, Invariable.BORROW_IN);
+            // 删除预约人的信息
+            userDao.deleteReserve(book_id, reserve_id);
+        }
+
+    }
+
+    @Override
+    public void reserveBook(int book_id, int reserve_id) {
+        userDao.reserveBook(book_id,reserve_id);
     }
 }

@@ -4,18 +4,22 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 public class Invariable {
+
+
     /**
      * @author ifan
-     * @version 0.0.2
+     * @version 0.0.3
      * @Date 2017年9月27日15:43:38
      * @explain 图书的状态
      */
     public static final int BOOK_STATUS_AFFIRM_NOT = 0;//未确认状态
     public static final int BOOK_STATUS_AFFIRM_TRUE = 1;//确认成功
     public static final int BOOK_STATUS_AFFIRM_FALSE = 2;//确认失败
-    public static final int BOOK_STATUS_FLOW = 2;//流动状态
-    public static final int BOOK_STATUS_ONE_TO_ONE = 3;//一对一借阅状态
-    public static final int BOOK_STATUS_SELL = 4;//售出状态
+    public static final int BOOK_STATUS_FLOW_FALSE = 3;//准备流动状态，该书在书主的手中
+    public static final int BOOK_STATUS_FLOW_TRUE = 4;//正在流动状态，该书不在书主的手中
+    public static final int BOOK_STATUS_ONE_TO_ONE_FALSE = 5;//准备一对一借阅状态，该书在书主的手中
+    public static final int BOOK_STATUS_ONE_TO_ONE_TRUE = 6;//正在一对一借阅状态，该书不在书主的手中
+    public static final int BOOK_STATUS_SELL = 7;//准备售出状态
 
     /**
      * @author ifan
@@ -30,17 +34,30 @@ public class Invariable {
 
     /**
      * @author ifan
-     * @version 0.0.1
+     * @version 0.0.3
      * @Date 2017年9月25日14:30:38
      * @explain 借阅的状态
      */
     public static final int BORROW_HISTORY = 0;// 图书为历史记录
     public static final int BORROW_IN = 1;// 图书在该人的手中
-    public static final int BORROW_NEXT = 2;// 下一位借阅人
+    public static final int BORROW_ONE_TO_ONE = 2;//一对一借阅
+    public static final int BORROW_ONE_TO_ONE_SELL = 3;//售出
+    //如果该书是流转状态，但是该书还在书主的手中，
+    //添加一条借阅记录。方便使用相同的业务逻辑进行图书的流转6
+    public static final int BORROW_TEMPORARY = 4;//临时状态
+
 
     public static final float ACQUIESCENT_USER_INTEGRAL = 0.0F;//默认的用户积分
     public static final float ACQUIESCENT_BOOK_INTEGRAL = 0.0F;//默认的图书积分
     public static final String IMAGE_BOOK_PREFIX = "/book/resource/images/books/";//定义默认用户上传的路径前缀
+    public static final int SYSTEM_ID = 0;//定义默认的系统管理员ID
+
+    /**
+     * 信息的级别
+     */
+    public static final int MESSAGE_SYSTEM = 0;
+    public static final int MESSAGE_APPLY_FOR_INTERVENE = 1;//申请介入
+
 
     /**
      * @author ifan

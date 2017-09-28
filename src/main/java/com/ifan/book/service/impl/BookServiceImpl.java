@@ -121,4 +121,38 @@ public class BookServiceImpl implements BookService {
             return bookDao.getSizeVerifyBook(status);
         }
     }
+
+    @Override
+    public int getBookStatus(int book_id) {
+        return bookDao.getBookStatus(book_id);
+    }
+
+    @Override
+    public int getBookOwner(int book_id) {
+        return bookDao.getBookOwner(book_id);
+    }
+
+    @Override
+    public void addBorrow(int book_id, int owner_id) {
+        bookDao.addBorrow(book_id, owner_id, Invariable.BORROW_TEMPORARY);
+    }
+
+    @Override
+    public int getCurrentBorrowId(int book_id) {
+        Integer currentBorrowId = bookDao.getCurrentBorrowId(book_id);
+        if (null != currentBorrowId) return -1;
+        else return currentBorrowId;
+    }
+
+    @Override
+    public void deleteMyBook(int book_id) {
+        bookDao.deleteMyBook(book_id);
+    }
+
+    @Override
+    public void changeBookOwner(int book_id, int nextOwner) {
+        bookDao.changeBookOwner(book_id,nextOwner);
+    }
+
+
 }

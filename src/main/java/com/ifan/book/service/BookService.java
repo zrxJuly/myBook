@@ -92,4 +92,46 @@ public interface BookService {
      * @return
      */
     int getSizeVerifyBook(boolean verify);
+
+    /**
+     * 得到图书的状态
+     * @param book_id
+     * @return 图书状态 see Invariable.BOOK_STATE
+     */
+    int getBookStatus(int book_id);
+
+    /**
+     * 根据图书的id 得到书主
+     * @param book_id 图书的id
+     * @return
+     */
+    int getBookOwner(int book_id);
+
+
+    /**
+     * 将书主添加进借阅表
+     * @param book_id 图书id
+     * @param owner_id 书主的id
+     */
+    void addBorrow(int book_id, int owner_id);
+
+    /**
+     * 得到当前借阅人
+     * @param book_id 图书的id
+     * @return
+     */
+    int getCurrentBorrowId(int book_id);
+
+    /**
+     * 删除我的图书
+     * @param book_id 图书的id
+     */
+    void deleteMyBook(int book_id);
+
+    /**
+     * 更换图书的当前拥有人
+     * @param book_id 图书的id
+     * @param nextOwner 下一位拥有人
+     */
+    void changeBookOwner(int book_id, int nextOwner);
 }

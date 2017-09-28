@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ifan.book.dao.MessageDao">
+
+    <resultMap id="message" type="com.ifan.book.model.Message">
+        <result column="from_id" property="from_id" jdbcType="INTEGER"/>
+        <result column="to_id" property="to_id" jdbcType="INTEGER"/>
+        <result column="sendDate" property="sendDate" jdbcType="DATE"/>
+        <result column="message_content" property="message_content" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <insert id="addMessage" parameterType="com.ifan.book.model.Message">
+        INSERT INTO message
+        (from_id, to_id, sendDate, message_content, status) VALUES
+        (#{from_id},#{to_id},now(),#{message_content},#{status})
+    </insert>
+
+</mapper>

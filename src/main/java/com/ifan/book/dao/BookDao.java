@@ -48,4 +48,23 @@ public interface BookDao {
 
     //查询确认的图书的数量
     int getSizeVerifyBook(@Param("status") int[] status);
+
+    // 查询图书的状态
+    int getBookStatus(@Param("book_id") int book_id);
+
+    //得到书主
+    int getBookOwner(@Param("book_id") int book_id);
+
+    //添加书主的借阅记录
+    void addBorrow(@Param("book_id") int book_id,@Param("owner_id") int owner_id,
+                   @Param("status") int status);
+
+    //得到当前借阅人的id
+    Integer getCurrentBorrowId(@Param("book_id") int book_id);
+
+    //删除我的图书
+    void deleteMyBook(@Param("book_id") int book_id);
+
+    //更换图书的拥有人
+    void changeBookOwner(@Param("book_id") int book_id,@Param("nextOwner") int nextOwner);
 }
