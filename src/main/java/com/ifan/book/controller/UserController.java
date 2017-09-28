@@ -78,6 +78,14 @@ public class UserController {
         }
         return "redirect: meInfo.action";
     }
+    @ResponseBody
+    @RequestMapping(value = "/ajaxGetUserByCondition.action", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public Map<String ,String> ajaxGetUserByCondition(String condition){
+        //根据账号和昵称查询用户
+
+        return userService.getUserByCondition(condition);
+    }
+
 
 
 }

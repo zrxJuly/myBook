@@ -61,8 +61,8 @@
     <select id="getCollectBookByUser" resultMap="collect">
         SELECT b.id,b.name,b.image,b.intro,c.collectDate
         FROM book b, collect c
-        WHERE collect.user_id=#{id}
-        AND collect.book_id=b.id
+        WHERE c.user_id=#{id}
+        AND c.book_id=b.id
     </select>
     <select id="getReserveBookByUser" resultMap="reserve">
         SELECT b.id,b.name,b.intro,b.image,r.reserveDate
@@ -91,11 +91,20 @@
       SELECT * FROM book
       WHERE status=#{status}
     </select>
-    <update id="verifyBookTrue" parameterType="java.lang.Integer">
+    <update id="verifyBook" parameterType="java.lang.Integer">
         UPDATE book
         SET status=#{status}
         WHERE id=#{id}
     </update>
+
+    <select id="getSizeVerifyBook" resultType="java.lang.Integer">
+        SELECT COUNT(id)
+        FROM book
+        WHERE status NOT IN
+        <foreach collection="status" open="(" close=")" separator=",">
+            #{status}
+        </foreach>
+    </select>
 
 
 </mapper>

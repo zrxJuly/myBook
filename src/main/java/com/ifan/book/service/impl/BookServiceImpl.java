@@ -25,7 +25,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public int addBook(Book book) {
         //设置图书为未确认类型
-        book.setStatus(Invariable.BOOK_STATE_NOT_AFFIRM);
+        book.setStatus(Invariable.BOOK_STATUS_AFFIRM_NOT);
         //设置图书添加的时间
         book.setCreateDate(new Date());
         return bookDao.addBook(book);
@@ -93,12 +93,12 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void reserveBook(int book_id, int user_id) {
-        bookDao.reserveBook(book_id,user_id);
+        bookDao.reserveBook(book_id, user_id);
     }
 
     @Override
     public void reserveBookCancel(int book_id, int user_id) {
-        bookDao.reserveBookCancel(book_id,user_id);
+        bookDao.reserveBookCancel(book_id, user_id);
     }
 
     @Override
@@ -107,7 +107,18 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void verifyBookTrue(int id) {
-        bookDao.verifyBookTrue(id);
+    public void verifyBook(int id, int status) {
+        bookDao.verifyBook(id, status);
+    }
+
+    @Override
+    public int getSizeVerifyBook(boolean verify) {
+        if (verify) {
+            int[] status = {Invariable.BOOK_STATUS_AFFIRM_FALSE, Invariable.BOOK_STATUS_AFFIRM_NOT};
+            return bookDao.getSizeVerifyBook(status);
+        } else {
+            int[] status = {Invariable.BOOK_STATUS_AFFIRM_NOT};
+            return bookDao.getSizeVerifyBook(status);
+        }
     }
 }

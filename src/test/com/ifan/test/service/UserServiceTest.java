@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
 import java.util.Map;
 import java.util.Random;
@@ -28,7 +29,8 @@ public class UserServiceTest {
      */
     @Test
     public void login() {
-
+        Map<String,Integer> user = userService.login("11","23213");
+        System.out.println(user==null);
     }
 
     /**

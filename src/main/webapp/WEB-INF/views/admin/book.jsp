@@ -75,67 +75,24 @@
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped">
                                     <thead>
-                                    <th>ID</th>
-                                    <th class="td2" style="width:80px;">书名</th>
-                                    <th style="width:80px;">作者</th>
-                                    <th>简介</th>
-                                    <th>操作</th>
+                                        <th>ID</th>
+                                        <th class="td2" style="width:80px;">书名</th>
+                                        <th style="width:80px;">作者</th>
+                                        <th>简介</th>
+                                        <th>操作</th>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>红楼梦</td>
-                                        <td>曹雪芹</td>
-                                        <td>这是一本世纪奇书，很棒很棒这是一本世纪奇书，很棒很棒这是一本世纪奇书，很棒很棒这是一本世纪奇书，很棒很棒这是一本世纪奇书，很棒很棒这是一本世纪奇书，很棒很棒这是一本世纪奇书，很棒很棒这是一本世纪奇书，很棒很棒这是一本世纪奇书，很棒很棒这是一本世纪奇书，很棒很棒这是一本世纪奇书，很棒很棒这是一本世纪奇书，很棒很棒这是一本世纪奇书，很棒很棒这是一本世纪奇书，很棒很棒</td>
-                                        <td><button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;margin-bottom: 3px;">通过</button>
-                                            <button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;">拒绝</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>水浒传</td>
-                                        <td>施耐庵</td>
-                                        <td>这本书很棒，是精装版的图书，值得阅读</td>
-                                        <td><button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;margin-bottom: 3px;">通过</button>
-                                            <button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;">拒绝</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>水浒传</td>
-                                        <td>施耐庵</td>
-                                        <td>这本书很棒，是精装版的图书，值得阅读</td>
-                                        <td><button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;margin-bottom: 3px;">通过</button>
-                                            <button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;">拒绝</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>水浒传</td>
-                                        <td>施耐庵</td>
-                                        <td>这本书很棒，是精装版的图书，值得阅读</td>
-                                        <td><button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;margin-bottom: 3px;">通过</button>
-                                            <button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;">拒绝</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>水浒传</td>
-                                        <td>施耐庵</td>
-                                        <td>这本书很棒，是精装版的图书，值得阅读</td>
-                                        <td><button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;margin-bottom: 3px;">通过</button>
-                                            <button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;">拒绝</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>水浒传</td>
-                                        <td>施耐庵</td>
-                                        <td>这本书很棒，是精装版的图书，值得阅读</td>
-                                        <td><button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;margin-bottom: 3px;">通过</button>
-                                            <button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;">拒绝</button>
-                                        </td>
-                                    </tr>
+                                        <c:forEach items="${unVerifyBooks}" var="unverifyBook" varStatus="count">
+                                            <tr>
+                                                <td>${count.index + 1 }</td>
+                                                <td>${unverifyBook.name }</td>
+                                                <td>${unverifyBook.author }</td>
+                                                <td>${unverifyBook.intro }</td>
+                                                <td><button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;margin-bottom: 3px;" onclick="location.href='/book/admin/verifyBookTrue.action?id=${unverifyBook.id}&amp;status=true' ">通过</button>
+                                                    <button class="subsq" style="border:0;border-radius: 4px;padding:3px 10px;background: #05AE0E;color:#FFFFFF;width:80px;min-height:20px;" onclick="location.href='/book/admin/verifyBookTrue.action?id=${unverifyBook.id}&amp;status=false' ">拒绝</button>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
 

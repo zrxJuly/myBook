@@ -39,4 +39,9 @@ public interface UserDao {
 
     // 查询账号是否存在
     Integer checkAccount(@Param("account") String account);
+
+    // 查询用户的数量
+    int getSizeAllUser();
+    // 根据条件查询用户
+    Map<String,String> getUserByCondition(@Param("condition") String condition);
 }

@@ -51,7 +51,7 @@
                 </li>
 
                 <li class="active">
-                    <a href="/book/admin/adminBook.action">
+                    <a href="/book/admin/waitingProcess.action">
                         <i class="ti-view-list-alt"></i>
                         <p>图书管理</p>
                     </a>

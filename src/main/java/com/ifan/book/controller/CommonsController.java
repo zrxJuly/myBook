@@ -80,20 +80,19 @@ public class CommonsController {
     @RequestMapping(value = "/login.action", method = RequestMethod.POST)
     public String login(String account, String password, HttpServletRequest request, HttpServletResponse response) {
         Map<String, Integer> user = userService.login(account, password);
-        Integer ID = user.get("id");
         int status = -1;
-        if (-1 == ID) {//没有找到账号
+        if (user == null) {//用户不存在
             request.setAttribute("error", "登录失败，账号或密码错误");
             return "login";
-        } else {
+        } else {//用户存在
             status = user.get("status");
             if (status == Invariable.USER_STATE_ADMIN) {//管理员
                 return "redirect: admin/index.action";
             }
             // 将用户的id放入session中
-            request.getSession().setAttribute(Invariable.SESSION_KEY, ID);
+            request.getSession().setAttribute(Invariable.SESSION_KEY, user.get("id"));
             // 添加 cookie
-            Cookie cookie = new Cookie(Invariable.COOKIE_KEY, String.valueOf(ID));
+            Cookie cookie = new Cookie(Invariable.COOKIE_KEY, String.valueOf(user.get("id")));
             cookie.setMaxAge(30 * 60);// 设置为30min
             cookie.setPath("/");
             response.addCookie(cookie);

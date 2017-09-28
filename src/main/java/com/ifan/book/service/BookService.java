@@ -84,5 +84,12 @@ public interface BookService {
      * 确认图书信息
      * @param id 图书的id
      */
-    void verifyBookTrue(int id);
+    void verifyBook(int id,int status);
+
+    /**
+     * 查询确认的图书的数量
+     * @param verify 是否已经确认 true 确认 false 未确认
+     * @return
+     */
+    int getSizeVerifyBook(boolean verify);
 }
