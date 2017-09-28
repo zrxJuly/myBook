@@ -313,10 +313,10 @@
                             </button>
                             <button class="mebtn" onclick="deleteBook('${book.id}')">删除
                             </button>
-                            <button class="mebtn" data-toggle="modal" data-target="#myModal2">
+                            <button class="mebtn" data-toggle="modal" data-target="#myModal2"  onclick="clearinput()">
                                 更换借阅人
                             </button>
-                            <button class="mebtn" data-toggle="modal" data-target="#myModal1">
+                            <button class="mebtn" data-toggle="modal" data-target="#myModal1"  onclick="clearinput()">
                                 申请介入
                             </button>
                             <button class="mebtn" data-toggle="modal" data-target="#myModal3">
@@ -485,11 +485,11 @@
 
                 </div>
                 <form action="#" id="formid" method="post">
-                    <textarea name="yuanyin" class="input textarea" placeholder="请在此说明原因" required></textarea>
+                    <textarea name="yuanyin" class="input textarea inputclear"  placeholder="请在此说明原因" required></textarea>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="applybtn" data-dismiss="modal">关闭
+                <button type="button" class="applybtn" data-dismiss="modal"  onclick="clearinput()">关闭
                 </button>
                 <button type="button" class="applybtn" onclick="applebtn()">
                     提交
@@ -513,7 +513,7 @@
             <div class="modal-body modal-scroll">
 
                 <form action="#" id="formid2" method="post">
-                    <input type="text" class="input mymodal2input" placeholder="请输入借阅人账号或者昵称" />
+                    <input type="text" class="input mymodal2input inputclear" placeholder="请输入借阅人账号或者昵称" />
                 </form>
                 <div>
 
@@ -548,7 +548,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="applybtn" data-dismiss="modal">关闭
+                <button type="button" class="applybtn" data-dismiss="modal" onclick="clearinput()">关闭
                 </button>
                 <button type="button" class="applybtn" onclick="applebtn()">
                     提交
@@ -633,6 +633,11 @@
     function  applebtn() {
         document.getElementById("formid").submit();
     }
+</script>
+<script>
+   function clearinput(){
+       $(".inputclear").val("");
+   }
 </script>
 </body>
 </html>
