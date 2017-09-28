@@ -54,6 +54,7 @@
 
 </head>
 <body>
+
 <header role="banner" id="fh5co-header">
     <div class="container">
         <div class="row">
@@ -168,6 +169,7 @@
                                         <div class="fh5co-post animate-box">
                                             <h3>预约的图书</h3>
                                             <%--<p> 大户 </p>--%>
+
                                         </div>
                                     </div>
 
@@ -299,7 +301,7 @@
                                 <div class="portfolio-entry" style="background-image: url(${book.image});">
                                 </div>
                                 <div class="portfolio-text text-center">
-                                    <h3>${book.name}</h3>
+                                    <%--<h3>${book.name}</h3>此处用于存放书名 不知道为什么此处有324的书名只在第一个--%>
                                     <p>上传时间:<fmt:formatDate value="${book.createDate}"
                                                             pattern="yyyy-MM-dd"></fmt:formatDate></p>
                                 </div>
@@ -312,6 +314,9 @@
                             <button class="col-sub-4" onclick="deleteBook('${book.id}')">删除
                             </button>
                             <button class="col-sub-8 ">更换拥有人</button>
+                            <button class="col-sub-8" data-toggle="modal" data-target="#myModal1">
+                                申请介入
+                            </button>
                         </div>
                     </div>
                     <c:if test="${b.count%3==0}">
@@ -350,8 +355,11 @@
                                 </div>
                             </a>
                                 <%--<c:if test="${book.reserve.reserveRanking == 1}">--%>
+
                             <button class="btn-sub-9" onclick="isGiveMe(${book.bookID})">完成转交</button>
-                                <%--</c:if>--%>
+
+
+                        <%--</c:if>--%>
                         </div>
                     </div>
                     <c:if test="${b.count%3==0}">
@@ -410,6 +418,8 @@
                                     <button id="formOperationButton" type="submit"
                                             class="btn-sub-7">添加
                                     </button>
+
+
                                 </div>
                             </fieldset>
                         </div>
@@ -449,7 +459,36 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+<!-- 申请介入模态框（Modal） -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel1">
+                    请详细描述原因。
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="formid" method="post">
+                    <input type="text" class="input" name="username" placeholder="请在这里递补用户名" required>
+                    <input type="email"  class="input" name="bookname" placeholder="请在这里递补书名" required>
+                    <textarea name="yuanyin" class="input textarea" placeholder="请在此说明原因" required></textarea>
 
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="applybtn" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="applybtn" onclick="applebtn()">
+                    提交
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 <!-- jQuery -->
 <script src="/book/resource/js/jquery.min.js"></script>
 <!-- jQuery Easing -->
@@ -471,8 +510,9 @@
 <script src="/book/resource/js/respond.min.js"></script>
 <![endif]-->
 <script type="text/javascript">
-
+    function  applebtn() {
+        document.getElementById("formid").submit();
+    }
 </script>
-
 </body>
 </html>
