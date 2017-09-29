@@ -183,4 +183,11 @@ public interface BookService {
      * @return
      */
     int getBookCurrentBorrow(int book_id);
+
+    /**
+     * 根据图书的名称查询自动递补该书的详细信息
+     * @param book_name
+     * @return
+     */
+    Book getAutomaticReplenishmentBookInfo(String book_name);
 }

@@ -248,32 +248,11 @@ public class UserController {
     }
 
 
-    /**
-     * 显示图书详细信息的页面
-     *
-     * @param book_id 要显示图书的id
-     * @return
-     */
-    @RequestMapping(value = "")
-    public String getBookDetails(int book_id, ModelMap modelMap, HttpSession session) {
-        Integer current_id = (Integer) session.getAttribute(Invariable.SESSION_KEY);
-        int owner = bookService.getBookOwner(book_id);
-        int borrowId = bookService.getBookCurrentBorrow(book_id);
-        modelMap.addAttribute("bookBaseInfo", bookService.getBookBaseInfo(book_id));
 
-        if (current_id != null) {//没有登录
-            modelMap.addAttribute("flag", "notLogin");
-        } else if (current_id == borrowId) {//是当前借阅人
-            modelMap.addAttribute("flag", "isCurrentBorrow");
-        } else if (current_id == owner) {//是书主
-            modelMap.addAttribute("flag", "isOwner");
-        } else {// 登录了 不是当前借阅人 不是书主  ==> 可以借阅
-            modelMap.addAttribute("flag", "operation");
-            modelMap.addAttribute("isCollect", userService.isCollectThisBook(book_id, current_id));//是否收藏过
-            modelMap.addAttribute("isReserve", userService.isReserveThisBook(book_id, current_id));//是否预约过
-        }
-
-        return "";
+    @ResponseBody
+    @RequestMapping(value = "/automaticReplenishmentBookInfo.action", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public Book automaticReplenishmentBookInfo(String book_name){
+        return bookService.getAutomaticReplenishmentBookInfo(book_name);
     }
 
 }

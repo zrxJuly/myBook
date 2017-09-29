@@ -166,6 +166,10 @@
         WHERE book_id=#{book_id}
         AND status=1
     </select>
+    <select id="getAutomaticReplenishmentBookInfo" resultMap="book">
+        SELECT * FROM book
+        WHERE name LIKE #{book_name}
+    </select>
 
 
 </mapper>

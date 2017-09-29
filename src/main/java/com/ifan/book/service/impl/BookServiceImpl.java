@@ -179,5 +179,11 @@ public class BookServiceImpl implements BookService {
         return bookDao.getBookCurrentBorrow(book_id);
     }
 
+    @Override
+    public Book getAutomaticReplenishmentBookInfo(String book_name) {
+        book_name = "'%" + book_name + "%'";
+        return bookDao.getAutomaticReplenishmentBookInfo(book_name);
+    }
+
 
 }

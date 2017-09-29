@@ -79,4 +79,7 @@ public interface BookDao {
 
     //得到该书的当前借阅人
     int getBookCurrentBorrow(@Param("book_id") int book_id);
+
+    // 根据图书的名称得到图书的详细信息
+    Book getAutomaticReplenishmentBookInfo(@Param("book_name") String book_name);
 }
