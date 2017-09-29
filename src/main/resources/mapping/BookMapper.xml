@@ -139,4 +139,14 @@
         WHERE id=#{id}
     </update>
 
+    <select id="getBookBorrow" resultMap="borrow">
+        SELECT bor.borrowDate,bor.returnDate,bor.comment,bor.giveMark,
+        u.image,u.name
+        FROM borrow bor,user u
+        WHERE u.id = bor.user_id
+        AND bor.book_id=#{book_id}
+        AND bor.status IN (1,0)
+        ORDER BY bor.borrowDate DESC
+    </select>
+
 </mapper>

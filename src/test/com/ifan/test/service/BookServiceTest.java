@@ -1,6 +1,7 @@
 package com.ifan.test.service;
 
 import com.ifan.book.model.Book;
+import com.ifan.book.model.Borrow;
 import com.ifan.book.model.Collect;
 import com.ifan.book.service.BookService;
 import com.ifan.book.utils.Invariable;
@@ -80,4 +81,9 @@ public class BookServiceTest {
         System.out.println(collect);
     }
 
+    @Test
+    public void getBookBorrow(){
+        List<Borrow> list = bookService.getBookBorrow(1);
+        System.out.println(list);
+    }
 }

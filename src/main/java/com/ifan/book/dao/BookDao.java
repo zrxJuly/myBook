@@ -67,4 +67,7 @@ public interface BookDao {
 
     //更换图书的拥有人
     void changeBookOwner(@Param("book_id") int book_id,@Param("nextOwner") int nextOwner);
+
+    //得到图书借阅的历史记录
+    List<Borrow> getBookBorrow(@Param("book_id") int book_id);
 }

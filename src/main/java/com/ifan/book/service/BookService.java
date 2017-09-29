@@ -12,6 +12,7 @@ public interface BookService {
 
     /**
      * 添加图书
+     *
      * @param book
      * @return
      */
@@ -19,7 +20,8 @@ public interface BookService {
 
     /**
      * 根据 位置 获取该位置附近的热门图书
-     * @param latitude 经度
+     *
+     * @param latitude  经度
      * @param longitude 纬度
      * @return 借阅的数量 和 收藏的数量
      */
@@ -27,6 +29,7 @@ public interface BookService {
 
     /**
      * 用户更新图书信息
+     *
      * @param book
      */
     void updateBook(Book book);
@@ -34,6 +37,7 @@ public interface BookService {
 
     /**
      * 得到该用户当前借阅的图书
+     *
      * @param id
      * @return
      */
@@ -41,6 +45,7 @@ public interface BookService {
 
     /**
      * 得到用户的图书
+     *
      * @param id 用户id
      * @return
      */
@@ -48,6 +53,7 @@ public interface BookService {
 
     /**
      * 得到用户收藏的图书
+     *
      * @param id 用户id
      * @return
      */
@@ -55,6 +61,7 @@ public interface BookService {
 
     /**
      * 得到用户预约的图书
+     *
      * @param id 用户的id
      * @return
      */
@@ -62,32 +69,37 @@ public interface BookService {
 
     /**
      * 用户预约图书
+     *
      * @param book_id 图书的id
      * @param user_id 用户的id
      */
-    void reserveBook(int book_id,int user_id);
+    void reserveBook(int book_id, int user_id);
 
     /**
      * 用户取消预约图书
+     *
      * @param book_id 图书id
      * @param user_id 用户id
      */
-    void reserveBookCancel(int book_id,int user_id);
+    void reserveBookCancel(int book_id, int user_id);
 
     /**
      * 根据状态查询图书
+     *
      * @return
      */
     List<Book> getUnVerifyBook(int status);
 
     /**
      * 确认图书信息
+     *
      * @param id 图书的id
      */
-    void verifyBook(int id,int status);
+    void verifyBook(int id, int status);
 
     /**
      * 查询确认的图书的数量
+     *
      * @param verify 是否已经确认 true 确认 false 未确认
      * @return
      */
@@ -95,6 +107,7 @@ public interface BookService {
 
     /**
      * 得到图书的状态
+     *
      * @param book_id
      * @return 图书状态 see Invariable.BOOK_STATE
      */
@@ -102,6 +115,7 @@ public interface BookService {
 
     /**
      * 根据图书的id 得到书主
+     *
      * @param book_id 图书的id
      * @return
      */
@@ -110,13 +124,15 @@ public interface BookService {
 
     /**
      * 将书主添加进借阅表
-     * @param book_id 图书id
+     *
+     * @param book_id  图书id
      * @param owner_id 书主的id
      */
     void addBorrow(int book_id, int owner_id);
 
     /**
      * 得到当前借阅人
+     *
      * @param book_id 图书的id
      * @return
      */
@@ -124,14 +140,24 @@ public interface BookService {
 
     /**
      * 删除我的图书
+     *
      * @param book_id 图书的id
      */
     void deleteMyBook(int book_id);
 
     /**
      * 更换图书的当前拥有人
-     * @param book_id 图书的id
+     *
+     * @param book_id   图书的id
      * @param nextOwner 下一位拥有人
      */
     void changeBookOwner(int book_id, int nextOwner);
+
+    /**
+     * 根据图书的id得到图书借阅的历史记录
+     *
+     * @param book_id
+     * @return
+     */
+    List<Borrow> getBookBorrow(int book_id);
 }

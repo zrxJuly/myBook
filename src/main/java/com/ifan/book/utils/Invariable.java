@@ -49,8 +49,9 @@ public class Invariable {
 
     public static final float ACQUIESCENT_USER_INTEGRAL = 0.0F;//默认的用户积分
     public static final float ACQUIESCENT_BOOK_INTEGRAL = 0.0F;//默认的图书积分
-    public static final String IMAGE_BOOK_PREFIX = "/book/resource/images/books/";//定义默认用户上传的路径前缀
+    public static final String IMAGE_BOOK_PREFIX = "/book/resource/images/books/";//定义默认用户上传图书图片路径前缀
     public static final int SYSTEM_ID = 0;//定义默认的系统管理员ID
+    public static final String IMAGE_USER_PREFIX = "/book/resource/images/users";//定义默认的用户上传的头像的前缀
 
     /**
      * 信息的级别

@@ -154,5 +154,10 @@ public class BookServiceImpl implements BookService {
         bookDao.changeBookOwner(book_id,nextOwner);
     }
 
+    @Override
+    public List<Borrow> getBookBorrow(int book_id) {
+        return bookDao.getBookBorrow(book_id);
+    }
+
 
 }

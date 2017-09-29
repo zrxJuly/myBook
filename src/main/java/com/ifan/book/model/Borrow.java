@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * 图书的借阅信息
  */
-public class Borrow extends Book{
+public class Borrow extends Book {
     protected Date borrowDate;//借阅时间
     protected Date returnDate;//还书时间
     protected int status;//状态

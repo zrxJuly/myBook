@@ -1,6 +1,7 @@
 package com.ifan.book.controller;
 
 import com.ifan.book.model.Book;
+import com.ifan.book.model.Borrow;
 import com.ifan.book.model.Message;
 import com.ifan.book.model.User;
 import com.ifan.book.service.BookService;
@@ -44,24 +45,31 @@ public class UserController {
 
     @RequestMapping("/meInfo.action")
     public String meInfo(Model model, HttpServletRequest request) {
-        int ID = (Integer) request.getSession().getAttribute(Invariable.SESSION_KEY);
-        model.addAttribute("userInfo", userService.getUserBaseInfo(ID));//查询用户的基本信息
-        model.addAttribute("bookBorrow", bookService.getBorrowBookByUser(ID));//得到用户的借阅信息
-        model.addAttribute("bookMy", bookService.getMyBook(ID));//得到用户的图书
-        model.addAttribute("bookCollect", bookService.getCollectBookByUser(ID));//得到用户收藏的图书
-        model.addAttribute("bookReserve", bookService.getReserveBookByUser(ID));//得到用户预约的图书
+        int current_id = (int) request.getSession().getAttribute(Invariable.SESSION_KEY);
+        model.addAttribute("userInfo", userService.getUserBaseInfo(current_id));//查询用户的基本信息
+        model.addAttribute("bookBorrow", bookService.getBorrowBookByUser(current_id));//得到用户的借阅信息
+        model.addAttribute("bookMy", bookService.getMyBook(current_id));//得到用户的图书
+        model.addAttribute("bookCollect", bookService.getCollectBookByUser(current_id));//得到用户收藏的图书
+        model.addAttribute("bookReserve", bookService.getReserveBookByUser(current_id));//得到用户预约的图书
         return "meInfo";
     }
 
+    /**
+     * 更新或者添加图书
+     *
+     * @param book
+     * @param file
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/addOrUpdateBook.action", method = RequestMethod.POST)
     public String addOrUpdateBook(Book book, MultipartFile file, HttpServletRequest request) {
         //查看用户是否改变了图片的信息
         if (null != file) {
-            Map<String, String> map = FileUpLoad.imageUp(file, request);
+            Map<String, String> map = FileUpLoad.imageUp(file, request, "books\\");
             System.out.println(map.get("flag"));
             if ("success" == map.get("flag")) {
                 //文件上传成功
-                System.out.println(map.get("path"));
                 book.setImage(Invariable.IMAGE_BOOK_PREFIX + map.get("path"));//重新填写图片的路径
             }
         }
@@ -75,9 +83,6 @@ public class UserController {
             Map<String, Double> location = userService.getUserLocation(ID);
             book.setLongitude(location.get("longitude"));
             book.setLatitude(location.get("latitude"));
-            System.out.println("image = " + book.getImage());
-            System.out.println("latitude = " + book.getLatitude());
-            System.out.println(book.getLongitude());
             bookService.addBook(book);
         }
         return "redirect: meInfo.action";
@@ -91,8 +96,9 @@ public class UserController {
     }
 
     // 申请介入 user/applyForIntervene.action POST
+    // 返回个人信息页面
     @RequestMapping(value = "/applyForIntervene.action", method = RequestMethod.POST)
-    public void applyForIntervene(String message, int book_id, HttpServletRequest request) {
+    public String applyForIntervene(String message, int book_id, HttpServletRequest request) {
         int current_id = (Integer) request.getSession().getAttribute(Invariable.SESSION_KEY);
         Message toSystemAdmin = new Message();//将消息发送给系统管理员
         toSystemAdmin.setMessage_content(message);
@@ -109,6 +115,7 @@ public class UserController {
             messageServer.addMessage(toCurrentBorrow);
         }
         messageServer.addMessage(toSystemAdmin);
+        return "redirect: meInfo.action";
     }
 
     // 删除 user/deleteMyBook.action POST
@@ -146,8 +153,14 @@ public class UserController {
     // flag:boolean
     // message:"更换成功"|"更换失败，该书正在流转"|"更换失败，该书正在一对一借阅"
     public Map<String, String> changeBookOwner(int book_id, int nextOwner, HttpServletRequest request) {
-        int current_id = (Integer) request.getSession().getAttribute(Invariable.SESSION_KEY);
         Map<String, String> map = new HashMap<String, String>();
+        int current_id = (Integer) request.getSession().getAttribute(Invariable.SESSION_KEY);
+        if (current_id != bookService.getBookOwner(book_id)) {
+            map.put("flag", "false");
+            map.put("message", "更换失败，这本图书不是你的");
+            return map;
+        }
+
         int status = bookService.getBookStatus(book_id);
         switch (status) {
             case Invariable.BOOK_STATUS_AFFIRM_TRUE://确认成功状态
@@ -171,8 +184,46 @@ public class UserController {
                 map.put("message", "更换失败，该书的状态为一对一借阅");
                 break;
         }
-
         return map;
+    }
+
+    // 用户修改自己的个人信息
+    // file 头像
+    @RequestMapping(value = "/updateMyInfo.action")
+    public String updateMyInfo(User user, MultipartFile file, HttpServletRequest request) {
+        if (null != file) {
+            Map<String, String> map = FileUpLoad.imageUp(file, request, "users\\");
+            if ("success" == map.get("flag")) {
+                //文件上传成功
+                user.setImage(Invariable.IMAGE_USER_PREFIX + map.get("path"));//重新填写图片的路径
+            }
+        }
+        userService.updateUserBaseInfo(user);
+        return "redirect: meInfo.action";
+    }
+
+    /**
+     * 更新自己的密码
+     *
+     * @param password 新密码
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/updateMyPassword.action")
+    public String updateMyPassword(String password, HttpServletRequest request) {
+        int current_id = (int) request.getSession().getAttribute(Invariable.SESSION_KEY);
+        userService.updateUserPassword(current_id, password);
+        return "redirect: meInfo.action";
+    }
+
+    /**
+     * 得到 书途
+     * @param book_id
+     */
+    @RequestMapping(value = "/getBookBorrow.action")
+    public void getBookBorrow(int book_id){
+        List<Borrow> list = bookService.getBookBorrow(book_id);
+
     }
 
 }

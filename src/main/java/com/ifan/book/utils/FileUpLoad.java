@@ -17,7 +17,7 @@ public class FileUpLoad {
      * @param request
      * @return
      */
-    public static Map<String, String> imageUp(MultipartFile file, HttpServletRequest request) {
+    public static Map<String, String> imageUp(MultipartFile file, HttpServletRequest request, String ImageType) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("flag", "success");
         map.put("message", "文件上传成功");
@@ -29,11 +29,11 @@ public class FileUpLoad {
         if (type != null) {// 判断文件类型是否为空
             if ("GIF".equals(type.toUpperCase()) || "PNG".equals(type.toUpperCase()) || "JPG".equals(type.toUpperCase())) {
                 // 项目在容器中实际发布运行的根路径
-                String realPath = request.getSession().getServletContext().getRealPath("\\resource\\images\\books\\");
+                String realPath = request.getSession().getServletContext().getRealPath("\\resource\\images\\" + ImageType);
                 // 自定义的文件名称
                 String trueFileName = String.valueOf(System.currentTimeMillis());
                 // 设置存放图片文件的路径
-                path = realPath +"\\"+ trueFileName + "." + type;
+                path = realPath + "\\" + trueFileName + "." + type;
                 map.put("path", trueFileName + "." + type);
                 // 转存文件到指定的路径
                 try {
