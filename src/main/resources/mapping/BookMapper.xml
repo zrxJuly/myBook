@@ -10,7 +10,7 @@
         <result column="press" property="press" jdbcType="VARCHAR"/>
         <result column="translator" property="translator" jdbcType="VARCHAR"/>
         <result column="price" property="price" jdbcType="FLOAT"/>
-        <result column="owner" property="owner" jdbcType="INTEGER"/>
+        <result column="owner" property="owner" jdbcType="VARCHAR"/>
         <result column="image" property="image" jdbcType="VARCHAR"/>
         <result column="createDate" property="createDate" jdbcType="DATE"/>
         <result column="intro" property="intro" jdbcType="VARCHAR"/>
@@ -174,6 +174,12 @@
         SELECT name
         FROM book
         WHERE name LIKE ${condition}
+    </select>
+    <select id="getBooksByCondition" resultMap="book">
+        SELECT b.id,u.name "owner",b.name,b.image,b.intro,b.latitude,b.latitude
+        FROM book b,user u
+        WHERE b.name LIKE ${condition}
+        AND b.owner = u.id
     </select>
 
 

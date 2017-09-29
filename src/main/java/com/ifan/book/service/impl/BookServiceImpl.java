@@ -191,5 +191,11 @@ public class BookServiceImpl implements BookService {
         return bookDao.getBookNameByCondition(condition);
     }
 
+    @Override
+    public List<Book> getBooksByCondition(String condition) {
+        condition = "'%" + condition + "%'";
+        return bookDao.getBooksByCondition(condition);
+    }
+
 
 }

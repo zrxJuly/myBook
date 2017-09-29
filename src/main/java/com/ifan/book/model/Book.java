@@ -6,7 +6,7 @@ public class Book extends Common{
     protected String press;//出版社
     protected String translator;//译者
     protected Float price;//价格
-    protected int owner;   //书主
+    protected String owner;   //书主
     protected Double distance;//距离
 
     public String getAuthor() {
@@ -41,11 +41,11 @@ public class Book extends Common{
         this.price = price;
     }
 
-    public int getOwner() {
+    public String getOwner() {
         return owner;
     }
 
-    public void setOwner(int owner) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
 

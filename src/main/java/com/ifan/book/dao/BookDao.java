@@ -85,4 +85,7 @@ public interface BookDao {
 
     // 根据图书的名称得到相关的图书信息
     List<String> getBookNameByCondition(@Param("condition") String condition);
+
+    // 根据图书的名称得到所有符合条件的图书
+    List<Book> getBooksByCondition(@Param("condition") String condition);
 }

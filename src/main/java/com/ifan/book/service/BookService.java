@@ -197,4 +197,11 @@ public interface BookService {
      * @return
      */
     List<String> getBookNameByCondition(String condition);
+
+    /**
+     * 根据条件查询符合条件的所有图书
+     * @param condition
+     * @return
+     */
+    List<Book> getBooksByCondition(String condition);
 }

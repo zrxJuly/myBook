@@ -5,6 +5,7 @@ import com.ifan.book.model.User;
 import com.ifan.book.service.BookService;
 import com.ifan.book.service.UserService;
 import com.ifan.book.utils.Invariable;
+import com.sun.org.apache.regexp.internal.RE;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -159,7 +160,7 @@ public class CommonsController {
      * @param book_id 要显示图书的id
      * @return
      */
-    @RequestMapping(value = "")
+    @RequestMapping(value = "/getBookDetails.action")
     public String getBookDetails(int book_id, ModelMap modelMap, HttpSession session) {
         Integer current_id = (Integer) session.getAttribute(Invariable.SESSION_KEY);
         int owner = bookService.getBookOwner(book_id);
@@ -186,11 +187,22 @@ public class CommonsController {
      *
      * @param condition 输入的条件
      */
-    @RequestMapping(value = "/ajaxGetBookNameByCondition.action")
+    @ResponseBody
+    @RequestMapping(value = "/ajaxGetBookNameByCondition.action", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public List<String> ajaxGetBookNameByCondition(String condition, HttpSession session) {
         Integer current_id = (Integer) session.getAttribute(Invariable.SESSION_KEY);
         List<String> bookNames = bookService.getBookNameByCondition(condition);
-        return null;
+        return bookNames;
+    }
+
+    /**
+     * 根据条件查询所有的图书
+     * @return
+     */
+    @RequestMapping(value = "/getBooksByCondition.action")
+    public String getBooksByCondition(String condition,HttpSession session,ModelMap modelMap){
+        modelMap.addAttribute("bookList",bookService.getBooksByCondition(condition));
+        return "";
     }
 
 }
