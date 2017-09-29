@@ -169,5 +169,15 @@ public class BookServiceImpl implements BookService {
         }
     }
 
+    @Override
+    public Book getBookBaseInfo(int book_id) {
+        return bookDao.getBookBaseInfo(book_id);
+    }
+
+    @Override
+    public int getBookCurrentBorrow(int book_id) {
+        return bookDao.getBookCurrentBorrow(book_id);
+    }
+
 
 }

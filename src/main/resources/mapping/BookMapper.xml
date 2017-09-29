@@ -154,5 +154,18 @@
         WHERE user_id =#{user_id}
         AND book_id=#{book_id}
     </select>
+    <select id="getBookBaseInfo" resultMap="book">
+        SELECT b.id,b.name,b.image,b.intro,b.createDate,b.longitude,b.latitude
+        FROM book b,user u
+        WHERE b.id=#{book_id}
+        AND u.id=b.owner
+    </select>
+    <select id="getBookCurrentBorrow" parameterType="java.lang.Integer">
+        SELECT borrow
+        FROM borrow
+        WHERE book_id=#{book_id}
+        AND status=1
+    </select>
+
 
 </mapper>

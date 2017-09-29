@@ -87,4 +87,10 @@ public interface UserDao {
 
     // 预约图书
     void reserveBook(@Param("book_id") int book_id,@Param("reserve_id") int reserve_id);
+
+    //查询该书是否被该用户收藏过
+    Integer isCollectThisBook(@Param("book_id") int book_id,@Param("user_id") int user_id);
+
+    //查询该书是否被用户预约过
+    Integer isReserveThisBook(@Param("book_id") int book_id,@Param("user_id") int user_id);
 }

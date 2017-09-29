@@ -56,7 +56,7 @@ public interface BookDao {
     int getBookOwner(@Param("book_id") int book_id);
 
     //添加书主的借阅记录
-    void addBorrow(@Param("book_id") int book_id,@Param("owner_id") int owner_id,
+    void addBorrow(@Param("book_id") int book_id, @Param("owner_id") int owner_id,
                    @Param("status") int status);
 
     //得到当前借阅人的id
@@ -66,11 +66,17 @@ public interface BookDao {
     void deleteMyBook(@Param("book_id") int book_id);
 
     //更换图书的拥有人
-    void changeBookOwner(@Param("book_id") int book_id,@Param("nextOwner") int nextOwner);
+    void changeBookOwner(@Param("book_id") int book_id, @Param("nextOwner") int nextOwner);
 
     //得到图书借阅的历史记录
     List<Borrow> getBookBorrow(@Param("book_id") int book_id);
 
     // 用户时候借阅过该书
-    Integer getUserBorrowIt(@Param("book_id") int book_id,@Param("user_id") int user_id);
+    Integer getUserBorrowIt(@Param("book_id") int book_id, @Param("user_id") int user_id);
+
+    //得到一本书
+    Book getBookBaseInfo(@Param("book_id") int book_id);
+
+    //得到该书的当前借阅人
+    int getBookCurrentBorrow(@Param("book_id") int book_id);
 }

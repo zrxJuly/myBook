@@ -167,5 +167,18 @@
         (#{book_id},#{reserve_id},now(),FALSE )
     </insert>
 
+    <select id="book_id" resultType="java.lang.Integer">
+        SELECT user_id
+        FROM collect
+        WHERE book_id=#{book_id}
+        AND user_id=#{user_id}
+    </select>
+    <select id="isReserveThisBook" resultType="java.lang.Integer">
+        SELECT user_id
+        FROM reserve
+        WHERE book_id=#{book_id}
+        AND user_id=#{user_id}
+    </select>
+
 
 </mapper>

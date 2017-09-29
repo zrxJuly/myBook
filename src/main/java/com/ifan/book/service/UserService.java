@@ -138,4 +138,19 @@ public interface UserService {
      */
     void reserveBook(int book_id, int reserve_id);
 
+    /**
+     * 查询该书时候被收藏过
+     * @param book_id 图书的id
+     * @param user_id 用户的id
+     * @return
+     */
+    boolean isCollectThisBook(int book_id, int user_id);
+
+    /**
+     * 查询该书是否被预约过
+     * @param book_id 图书的id
+     * @param user_id 用户的id
+     * @return
+     */
+    boolean isReserveThisBook(int book_id, int user_id);
 }

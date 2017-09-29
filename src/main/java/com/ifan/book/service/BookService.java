@@ -169,4 +169,18 @@ public interface BookService {
      * @return true:借阅过 false:没有借阅过
      */
     boolean getUserBorrowIt(int book_id, int user_id);
+
+    /**
+     * 得到该书的详细信息
+     * @param book_id
+     * @return
+     */
+    Book getBookBaseInfo(int book_id);
+
+    /**
+     * 得到这本书的当前借阅人
+     * @param book_id 图书的id
+     * @return
+     */
+    int getBookCurrentBorrow(int book_id);
 }

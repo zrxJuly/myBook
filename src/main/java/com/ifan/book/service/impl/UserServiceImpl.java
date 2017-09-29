@@ -148,7 +148,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void borrowAffirm(int book_id, int borrow_id) {
         int reserve_id = userDao.getFirstReserve(book_id);
-        if (userDao.getReserveGiveMe(book_id,reserve_id)) {//查看 预约表中 give_me字段是否已经更改
+        if (userDao.getReserveGiveMe(book_id, reserve_id)) {//查看 预约表中 give_me字段是否已经更改
             // 将当前借阅的信息改为历史记录
             userDao.borrowAffirm(book_id, borrow_id, Invariable.BORROW_HISTORY);
             // 添加将当前预约人添加进借阅表
@@ -161,6 +161,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void reserveBook(int book_id, int reserve_id) {
-        userDao.reserveBook(book_id,reserve_id);
+        userDao.reserveBook(book_id, reserve_id);
+    }
+
+    @Override
+    public boolean isCollectThisBook(int book_id, int user_id) {
+        if (userDao.isCollectThisBook(book_id, user_id) != null) {//收藏过
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean isReserveThisBook(int book_id, int user_id) {
+        return userDao.isReserveThisBook(book_id, user_id) != null ? true : false;
     }
 }
