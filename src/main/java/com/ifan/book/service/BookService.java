@@ -160,4 +160,13 @@ public interface BookService {
      * @return
      */
     List<Borrow> getBookBorrow(int book_id);
+
+    /**
+     * 用户是否借阅过该书
+     *
+     * @param book_id 图书id
+     * @param user_id 用户
+     * @return true:借阅过 false:没有借阅过
+     */
+    boolean getUserBorrowIt(int book_id, int user_id);
 }

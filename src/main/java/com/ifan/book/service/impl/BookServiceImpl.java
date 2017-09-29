@@ -151,12 +151,22 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void changeBookOwner(int book_id, int nextOwner) {
-        bookDao.changeBookOwner(book_id,nextOwner);
+        bookDao.changeBookOwner(book_id, nextOwner);
     }
 
     @Override
     public List<Borrow> getBookBorrow(int book_id) {
         return bookDao.getBookBorrow(book_id);
+    }
+
+    @Override
+    public boolean getUserBorrowIt(int book_id, int user_id) {
+        Integer status = bookDao.getUserBorrowIt(book_id, user_id);
+        if (status != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

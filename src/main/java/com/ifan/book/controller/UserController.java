@@ -1,10 +1,8 @@
 package com.ifan.book.controller;
 
-import com.ifan.book.model.Book;
-import com.ifan.book.model.Borrow;
-import com.ifan.book.model.Message;
-import com.ifan.book.model.User;
+import com.ifan.book.model.*;
 import com.ifan.book.service.BookService;
+import com.ifan.book.service.CommentService;
 import com.ifan.book.service.MessageServer;
 import com.ifan.book.service.UserService;
 import com.ifan.book.utils.FileUpLoad;
@@ -13,6 +11,7 @@ import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -42,6 +41,8 @@ public class UserController {
     private BookService bookService;
     @Resource
     private MessageServer messageServer;
+    @Resource
+    private CommentService commentService;
 
     @RequestMapping("/meInfo.action")
     public String meInfo(Model model, HttpServletRequest request) {
@@ -218,12 +219,31 @@ public class UserController {
 
     /**
      * 得到 书途
-     * @param book_id
+     * 页面跳转 没有页面
+     * TODO: 没有书途页面
+     *
+     * @param book_id 查看图书的id
      */
     @RequestMapping(value = "/getBookBorrow.action")
-    public void getBookBorrow(int book_id){
+    public String getBookBorrow(int book_id, ModelMap modelMap) {
         List<Borrow> list = bookService.getBookBorrow(book_id);
+        modelMap.addAttribute("bookBorrow", list);
+        return "";
+    }
 
+    /**
+     * 借阅过的用户对该书进行评论
+     * TODO: 没有图书详情页面
+     *
+     * @param comment 评论信息的封装
+     * @return 返回这本书的详细信息页面
+     */
+    @RequestMapping(value = "/userAddComment.action", method = RequestMethod.POST)
+    public String userAddComment(Comment comment, HttpServletRequest request) {
+        Integer current_id = (Integer) request.getSession().getAttribute(Invariable.SESSION_KEY);
+        comment.setUser_id(current_id);//设置评论用户的id
+        commentService.addComment(comment);
+        return "";
     }
 
 }

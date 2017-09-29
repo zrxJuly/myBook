@@ -70,4 +70,7 @@ public interface BookDao {
 
     //得到图书借阅的历史记录
     List<Borrow> getBookBorrow(@Param("book_id") int book_id);
+
+    // 用户时候借阅过该书
+    Integer getUserBorrowIt(@Param("book_id") int book_id,@Param("user_id") int user_id);
 }

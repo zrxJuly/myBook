@@ -148,5 +148,11 @@
         AND bor.status IN (1,0)
         ORDER BY bor.borrowDate DESC
     </select>
+    <select id="getUserBorrowIt" resultType="java.lang.Integer">
+        SELECT status
+        FROM borrow
+        WHERE user_id =#{user_id}
+        AND book_id=#{book_id}
+    </select>
 
 </mapper>

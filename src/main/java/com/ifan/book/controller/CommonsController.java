@@ -1,5 +1,6 @@
 package com.ifan.book.controller;
 
+import com.ifan.book.model.Comment;
 import com.ifan.book.model.User;
 import com.ifan.book.service.BookService;
 import com.ifan.book.service.UserService;
@@ -133,4 +134,20 @@ public class CommonsController {
     public String view(@PathVariable(value = "view") String view) {
         return view;
     }
+
+    /**
+     * 查询该用户是否借阅过该书
+     * @param book_id 需要查询的图书的id
+     * @return false: 没有借阅过 没有登录
+     */
+    @ResponseBody
+    @RequestMapping(value = "/getUserBorrowIt.action", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public boolean getUserBorrowIt(int book_id,HttpServletRequest request){
+        Integer current_id = (Integer) request.getSession().getAttribute(Invariable.SESSION_KEY);
+        if(null == current_id){//用户没有登录
+            return false;
+        }
+        return bookService.getUserBorrowIt(book_id,current_id);
+    }
+
 }
