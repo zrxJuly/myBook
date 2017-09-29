@@ -82,4 +82,7 @@ public interface BookDao {
 
     // 根据图书的名称得到图书的详细信息
     Book getAutomaticReplenishmentBookInfo(@Param("book_name") String book_name);
+
+    // 根据图书的名称得到相关的图书信息
+    List<String> getBookNameByCondition(@Param("condition") String condition);
 }

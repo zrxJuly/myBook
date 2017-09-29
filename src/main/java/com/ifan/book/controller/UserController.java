@@ -247,11 +247,15 @@ public class UserController {
         return "";
     }
 
-
-
+    /**
+     * 根据图书的名称动态返回图书的详细信息
+     *
+     * @param book_name
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/automaticReplenishmentBookInfo.action", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public Book automaticReplenishmentBookInfo(String book_name){
+    public Book automaticReplenishmentBookInfo(String book_name) {
         return bookService.getAutomaticReplenishmentBookInfo(book_name);
     }
 

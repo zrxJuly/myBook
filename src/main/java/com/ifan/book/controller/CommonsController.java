@@ -138,22 +138,23 @@ public class CommonsController {
 
     /**
      * 查询该用户是否借阅过该书
+     *
      * @param book_id 需要查询的图书的id
      * @return false: 没有借阅过 没有登录
      */
     @ResponseBody
     @RequestMapping(value = "/getUserBorrowIt.action", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public boolean getUserBorrowIt(int book_id,HttpServletRequest request){
+    public boolean getUserBorrowIt(int book_id, HttpServletRequest request) {
         Integer current_id = (Integer) request.getSession().getAttribute(Invariable.SESSION_KEY);
-        if(null == current_id){//用户没有登录
+        if (null == current_id) {//用户没有登录
             return false;
         }
-        return bookService.getUserBorrowIt(book_id,current_id);
+        return bookService.getUserBorrowIt(book_id, current_id);
     }
 
     /**
      * 显示图书详细信息的页面
-     * TODO:没有页面
+     * TODO:没有图书详细信息的页面
      *
      * @param book_id 要显示图书的id
      * @return
@@ -177,6 +178,19 @@ public class CommonsController {
             modelMap.addAttribute("isReserve", userService.isReserveThisBook(book_id, current_id));//是否预约过
         }
         return "";
+    }
+
+    /**
+     * 根据图书的名称自动查询类似的名称
+     * TODO:对查询到的图书进行筛选 未完成
+     *
+     * @param condition 输入的条件
+     */
+    @RequestMapping(value = "/ajaxGetBookNameByCondition.action")
+    public List<String> ajaxGetBookNameByCondition(String condition, HttpSession session) {
+        Integer current_id = (Integer) session.getAttribute(Invariable.SESSION_KEY);
+        List<String> bookNames = bookService.getBookNameByCondition(condition);
+        return null;
     }
 
 }

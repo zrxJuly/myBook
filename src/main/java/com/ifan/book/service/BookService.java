@@ -190,4 +190,11 @@ public interface BookService {
      * @return
      */
     Book getAutomaticReplenishmentBookInfo(String book_name);
+
+    /**
+     * 根据传入的图书名称得到相关的图书图书名称
+     * @param condition
+     * @return
+     */
+    List<String> getBookNameByCondition(String condition);
 }

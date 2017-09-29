@@ -168,7 +168,12 @@
     </select>
     <select id="getAutomaticReplenishmentBookInfo" resultMap="book">
         SELECT * FROM book
-        WHERE name LIKE #{book_name}
+        WHERE name LIKE ${book_name}
+    </select>
+    <select id="getBookNameByCondition" resultMap="java.lang.String">
+        SELECT name
+        FROM book
+        WHERE name LIKE ${condition}
     </select>
 
 

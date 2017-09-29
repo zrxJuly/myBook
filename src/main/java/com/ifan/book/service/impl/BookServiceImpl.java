@@ -185,5 +185,11 @@ public class BookServiceImpl implements BookService {
         return bookDao.getAutomaticReplenishmentBookInfo(book_name);
     }
 
+    @Override
+    public List<String> getBookNameByCondition(String condition) {
+        condition = "'%" + condition + "%'";
+        return bookDao.getBookNameByCondition(condition);
+    }
+
 
 }
