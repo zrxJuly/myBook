@@ -32,7 +32,7 @@ public class BookServiceTest {
         // 图书添加
         Book book = new Book();
         book.setAuthor("作者");
-        book.setOwner(1);
+       // book.setOwner(1);
         book.setPress("出版社");
         book.setStatus(1);
         int bookid = bookService.addBook(book);

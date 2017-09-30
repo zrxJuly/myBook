@@ -80,7 +80,7 @@ public class UserController {
         } else {//添加图书
             //设置图书的拥有人
             int ID = (Integer) request.getSession().getAttribute(Invariable.SESSION_KEY);
-            book.setOwner(ID);
+            book.setOwner(ID+"");
             //设置图书的位置为当前用户的位置
             Map<String, Double> location = userService.getUserLocation(ID);
             book.setLongitude(location.get("longitude"));

@@ -22,180 +22,234 @@
     <table id="16" parent="2" name="book"/>
     <table id="17" parent="2" name="borrow"/>
     <table id="18" parent="2" name="collect"/>
-    <table id="19" parent="2" name="reserve"/>
-    <table id="20" parent="2" name="student"/>
-    <table id="21" parent="2" name="user"/>
-    <column id="22" parent="16" name="id">
+    <table id="19" parent="2" name="comment"/>
+    <table id="20" parent="2" name="message"/>
+    <table id="21" parent="2" name="reserve"/>
+    <table id="22" parent="2" name="student"/>
+    <table id="23" parent="2" name="user"/>
+    <column id="24" parent="16" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="23" parent="16" name="account">
+    <column id="25" parent="16" name="account">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="24" parent="16" name="name">
+    <column id="26" parent="16" name="name">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="25" parent="16" name="author">
+    <column id="27" parent="16" name="author">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="26" parent="16" name="press">
+    <column id="28" parent="16" name="press">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="27" parent="16" name="translator">
+    <column id="29" parent="16" name="translator">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="28" parent="16" name="price">
+    <column id="30" parent="16" name="price">
       <Position>7</Position>
       <DataType>decimal(10,2)|0</DataType>
     </column>
-    <column id="29" parent="16" name="owner">
+    <column id="31" parent="16" name="owner">
       <Position>8</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="30" parent="16" name="image">
+    <column id="32" parent="16" name="image">
       <Position>9</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="31" parent="16" name="createDate">
+    <column id="33" parent="16" name="createDate">
       <Position>10</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="32" parent="16" name="intro">
+    <column id="34" parent="16" name="intro">
       <Position>11</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="33" parent="16" name="integral">
+    <column id="35" parent="16" name="integral">
       <Position>12</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="34" parent="16" name="status">
+    <column id="36" parent="16" name="status">
       <Position>13</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="35" parent="16" name="longitude">
+    <column id="37" parent="16" name="longitude">
       <Position>14</Position>
       <DataType>decimal(10,7)|0</DataType>
     </column>
-    <column id="36" parent="16" name="latitude">
+    <column id="38" parent="16" name="latitude">
       <Position>15</Position>
       <DataType>decimal(10,7)|0</DataType>
     </column>
-    <column id="37" parent="17" name="book_id">
+    <column id="39" parent="17" name="book_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="38" parent="17" name="user_id">
+    <column id="40" parent="17" name="user_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="39" parent="17" name="borrowDate">
+    <column id="41" parent="17" name="borrowDate">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="40" parent="17" name="returnDate">
+    <column id="42" parent="17" name="returnDate">
       <Position>4</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="41" parent="17" name="status">
+    <column id="43" parent="17" name="status">
       <Position>5</Position>
       <DataType>int(10)|0</DataType>
     </column>
-    <column id="42" parent="17" name="comment">
+    <column id="44" parent="17" name="comment">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="43" parent="18" name="book_id">
+    <column id="45" parent="17" name="giveMark">
+      <Position>7</Position>
+      <DataType>float(10,7)|0</DataType>
+    </column>
+    <column id="46" parent="18" name="book_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="44" parent="18" name="user_id">
+    <column id="47" parent="18" name="user_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="45" parent="18" name="collectDate">
+    <column id="48" parent="18" name="collectDate">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="46" parent="19" name="book_id">
+    <column id="49" parent="19" name="book_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="47" parent="19" name="user_id">
+    <column id="50" parent="19" name="user_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="48" parent="19" name="reserveDate">
+    <column id="51" parent="19" name="comment_content">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="52" parent="19" name="comment_date">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="53" parent="19" name="up">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="54" parent="19" name="down">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="55" parent="20" name="from_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="56" parent="20" name="to_id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="57" parent="20" name="sendDate">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="49" parent="20" name="ID">
+    <column id="58" parent="20" name="message_content">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="59" parent="20" name="status">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="60" parent="21" name="book_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="61" parent="21" name="user_id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="62" parent="21" name="reserveDate">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="63" parent="21" name="give_me">
+      <Position>4</Position>
+      <DataType>tinyint(1)|0</DataType>
+    </column>
+    <column id="64" parent="22" name="ID">
       <Position>1</Position>
       <DataType>varchar(5)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="50" parent="20" name="name">
+    <column id="65" parent="22" name="name">
       <Position>2</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="51" parent="20" name="age">
+    <column id="66" parent="22" name="age">
       <Position>3</Position>
       <DataType>int(3)|0</DataType>
     </column>
-    <column id="52" parent="20" name="FM">
+    <column id="67" parent="22" name="FM">
       <Position>4</Position>
       <DataType>varchar(1)|0</DataType>
     </column>
-    <key id="53" parent="20" name="PRIMARY">
+    <key id="68" parent="22" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="54" parent="21" name="id">
+    <column id="69" parent="23" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="55" parent="21" name="account">
+    <column id="70" parent="23" name="account">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="56" parent="21" name="password">
+    <column id="71" parent="23" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="57" parent="21" name="name">
+    <column id="72" parent="23" name="name">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="58" parent="21" name="image">
+    <column id="73" parent="23" name="image">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="59" parent="21" name="createDate">
+    <column id="74" parent="23" name="createDate">
       <Position>6</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="60" parent="21" name="intro">
+    <column id="75" parent="23" name="intro">
       <Position>7</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="61" parent="21" name="latitude">
+    <column id="76" parent="23" name="latitude">
       <Position>8</Position>
       <DataType>decimal(10,7)|0</DataType>
     </column>
-    <column id="62" parent="21" name="longitude">
+    <column id="77" parent="23" name="longitude">
       <Position>9</Position>
       <DataType>decimal(10,7)|0</DataType>
     </column>
-    <column id="63" parent="21" name="integral">
+    <column id="78" parent="23" name="integral">
       <Position>10</Position>
       <DataType>float(10,2)|0</DataType>
     </column>
-    <column id="64" parent="21" name="status">
+    <column id="79" parent="23" name="status">
       <Position>11</Position>
       <DataType>int(255)|0</DataType>
     </column>
