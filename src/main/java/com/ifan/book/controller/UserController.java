@@ -80,7 +80,7 @@ public class UserController {
         } else {//添加图书
             //设置图书的拥有人
             int ID = (Integer) request.getSession().getAttribute(Invariable.SESSION_KEY);
-            book.setOwner(ID+"");
+            book.setOwner(ID + "");
             //设置图书的位置为当前用户的位置
             Map<String, Double> location = userService.getUserLocation(ID);
             book.setLongitude(location.get("longitude"));
@@ -123,7 +123,10 @@ public class UserController {
     // 删除 user/deleteMyBook.action POST
     // flag:boolean
     // message:"删除成功"|"删除失败，该书正在流转"|"删除失败，该书正在一对一借阅"
+    @ResponseBody
+    @RequestMapping(value = "/deleteMyBook.action", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public Map<String, String> deleteMyBook(int book_id) {
+        System.out.println("book_id = " + book_id);
         Map<String, String> map = new HashMap<String, String>();
         int status = bookService.getBookStatus(book_id);
         switch (status) {
@@ -154,6 +157,7 @@ public class UserController {
     // user/changeBookOwner.action POST
     // flag:boolean
     // message:"更换成功"|"更换失败，该书正在流转"|"更换失败，该书正在一对一借阅"
+
     public Map<String, String> changeBookOwner(int book_id, int nextOwner, HttpServletRequest request) {
         Map<String, String> map = new HashMap<String, String>();
         int current_id = (Integer) request.getSession().getAttribute(Invariable.SESSION_KEY);
@@ -162,7 +166,6 @@ public class UserController {
             map.put("message", "更换失败，这本图书不是你的");
             return map;
         }
-
         int status = bookService.getBookStatus(book_id);
         switch (status) {
             case Invariable.BOOK_STATUS_AFFIRM_TRUE://确认成功状态

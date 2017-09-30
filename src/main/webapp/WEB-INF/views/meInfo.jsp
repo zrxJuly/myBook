@@ -639,5 +639,21 @@
        $(".inputclear").val("");
    }
 </script>
+<script type="text/javascript">
+    function deleteBook(book_id) {
+        $.ajax({
+            type: 'GET',
+            url: '/book/user/deleteMyBook.action',
+            data: {book_id: book_id},
+            success: function (data) {
+                alert("data - "+ data['flag']);
+            },
+            error: function (data) {
+                alert(data.message);
+            }
+
+        });
+    }
+</script>
 </body>
 </html>
