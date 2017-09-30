@@ -11,7 +11,7 @@
         <result column="down" property="down" jdbcType="INTEGER"/>
     </resultMap>
 
-    <insert id="addComment" parameterMap="comment">
+    <insert id="addComment" parameterType="com.ifan.book.model.Comment">
         INSERT INTO comment
         (book_id, user_id, comment_content, comment_date,up,down) VALUES
         (#{book_id},#{user_id},#{comment_content},now(),0,0)

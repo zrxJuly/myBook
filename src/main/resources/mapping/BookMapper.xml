@@ -170,7 +170,7 @@
         SELECT * FROM book
         WHERE name LIKE ${book_name}
     </select>
-    <select id="getBookNameByCondition" resultMap="java.lang.String">
+    <select id="getBookNameByCondition" resultType="java.lang.String">
         SELECT name
         FROM book
         WHERE name LIKE ${condition}
