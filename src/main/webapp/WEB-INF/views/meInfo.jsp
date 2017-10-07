@@ -316,7 +316,7 @@
                             <button class="mebtn" data-toggle="modal" data-target="#myModal2"  onclick="clearinput()">
                                 更换借阅人
                             </button>
-                            <button class="mebtn" data-toggle="modal" data-target="#myModal1"  onclick="clearinput()">
+                            <button class="mebtn" data-toggle="modal" data-target="#myModal1"  onclick="applyForIntervene('${book.id}')">
                                 申请介入
                             </button>
                             <button class="mebtn" data-toggle="modal" data-target="#myModal3">
@@ -469,11 +469,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="clearinput()">
                     &times;
                 </button>
                 <h4 class="modal-title" id="myModalLabel1">
-                    请详细描述原因。
+                    请详细描述原因:
                 </h4>
             </div>
             <div class="modal-body">
@@ -484,8 +484,9 @@
                    </ul>
 
                 </div>
-                <form action="#" id="formid" method="post">
-                    <textarea name="yuanyin" class="input textarea inputclear"  placeholder="请在此说明原因" required></textarea>
+                <form action="/book/user/applyForIntervene.action" id="formid" method="post">
+                    <input type="hidden" name="book_id" id="bookId">
+                    <textarea name="message" class="input textarea inputclear"  placeholder="请在此说明原因" required></textarea>
                 </form>
             </div>
             <div class="modal-footer">
@@ -660,6 +661,11 @@
                 }
             });
         }
+    }
+
+    //申请介入——遮罩获取图书id.
+    function applyForIntervene(book_id) {
+        $('#bookId').val(book_id);
     }
 </script>
 </body>
