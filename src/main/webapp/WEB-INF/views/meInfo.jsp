@@ -640,19 +640,26 @@
    }
 </script>
 <script type="text/javascript">
-    function deleteBook(book_id) {
-        $.ajax({
-            type: 'GET',
-            url: '/book/user/deleteMyBook.action',
-            data: {book_id: book_id},
-            success: function (data) {
-                alert("data - "+ data['flag']);
-            },
-            error: function (data) {
-                alert(data.message);
-            }
 
-        });
+    //删除我的图书.
+    function deleteBook(book_id) {
+        if(confirm('确定要删除该书吗？')) {
+            $.ajax({
+                type: 'GET',
+                url: '/book/user/deleteMyBook.action',
+                data: {book_id: book_id},
+                success: function (data) {
+                    if(data['flag'] === 'true') {
+                        alert(data['message']);
+                        window.location.reload();
+                    }
+                    else alert(data['message']);
+                },
+                error: function (data) {
+                    alert("操作失败，请刷新页面重试！");
+                }
+            });
+        }
     }
 </script>
 </body>
